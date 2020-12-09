@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/home"
+        android:icon="@drawable/home"
+        android:title="@string/home"></item>
+
+    <item
+        android:id="@+id/courses"
+        android:icon="@drawable/courses"
+        android:title="@string/courses"></item>
+    <item
+        android:id="@+id/tutors"
+        android:icon="@drawable/tutors"
+        android:title="@string/tutors"></item>
+    <item
+        android:id="@+id/model_set"
+        android:icon="@drawable/model_set"
+        android:title="@string/model_sets"></item>
+    <item
+        android:id="@+id/test_yourself"
+        android:icon="@drawable/test"
+        android:title="@string/test_yourself"></item>
+    <item
+        android:id="@+id/settings"
+        android:icon="@drawable/settings"
+        android:title="@string/settings"></item>
+    <item
+        android:id="@+id/contact_us"
+        android:icon="@drawable/contact"
+        android:title="@string/contact_us"></item>
+    <item
+        android:id="@+id/logout"
+        android:icon="@drawable/logout"
+        android:title="@string/logout"></item>
+
+</menu>

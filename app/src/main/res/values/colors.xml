@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#1a237e</color>
+    <color name="colorPrimaryDark">#000051</color>
+    <color name="colorAccent">#f48fb1</color>
+    <color name="background_layout">#e8eaf6</color>
+    <color name="white_color">#ffffff</color>
+    <color name="register_button_background">#B00020</color>
+    <color name="login_button_background">#33691e</color>
+    <color name="black_text_color">#000000</color>
+    <color name="signUp_second_layout_background">#fff1ff</color>
+    <color name="backgroundcolor">#fcfcfc</color>
+    <color name="lightgray">#ededed</color>
+    <color name="deeppurple">#7c4dff</color>
+    <color name="yello">#ffb300</color>
+    <color name="green">#00bfa5</color>
+    <color name="darkblue">#23283a</color>
+    <color name="testcolorblue">#152b38</color>
+    <color name="pink">#fe104d</color>
+    <color name="black_overlay">#66000000</color>
+    <color name="civ_border_color">#3f51b5</color>
+    <color name="insetForeground">#4000</color>
+    <color name="civ_shadow_color">#3f51b5</color>
+    <color name="logo_relative_layout_back_color">#714cfe</color>
+
+
+</resources>
