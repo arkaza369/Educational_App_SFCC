@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".TutorsActivity"></activity>
+        <activity android:name=".ClassTen"></activity>
+        <activity android:name=".TutorsActivity" />
         <activity android:name=".ModelSetActivity" />
         <activity android:name=".TestYourselfActivity" />
         <activity android:name=".CoursesActivity" />

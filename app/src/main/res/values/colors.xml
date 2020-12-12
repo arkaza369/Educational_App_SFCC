@@ -22,6 +22,10 @@
     <color name="insetForeground">#4000</color>
     <color name="civ_shadow_color">#3f51b5</color>
     <color name="logo_relative_layout_back_color">#714cfe</color>
-
-
+    <color name="class_8_layout_bck">#d4bff9</color>
+    <color name="class_9_layout_bck">#f2fde4</color>
+    <color name="class_10_layout_bck">#FFEBEE</color>
+    <color name="eng_grammer_layout_bck">#E3F2FD</color>
+    <color name="hindi_grammer_layout_bck">#F9FBE7</color>
+    v
 </resources>

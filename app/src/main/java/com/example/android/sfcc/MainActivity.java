@@ -11,6 +11,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Display;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.GridView;
@@ -59,21 +60,30 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 drawerLayout.closeDrawer(GravityCompat.START);
+                Intent intent;
                 switch (item.getItemId()) {
                     case R.id.home:
-                        Toast.makeText(getBaseContext(), "Home", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(getBaseContext(), "Home", Toast.LENGTH_SHORT).show();
+                        intent = new Intent(getApplicationContext(),MainActivity.class);
+                        startActivity(intent);
                         Log.d(TAG, "onNavigationItemSelected: home");
                         break;
                     case R.id.courses:
-                        Toast.makeText(MainActivity.this, "Courses", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(MainActivity.this, "Courses", Toast.LENGTH_SHORT).show();
+                        intent = new Intent(getApplicationContext(),CoursesActivity.class);
+                        startActivity(intent);
                         Log.d(TAG, "onNavigationItemSelected: Courses");
                         break;
                     case R.id.tutors:
-                        Toast.makeText(MainActivity.this, "Tutors", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(MainActivity.this, "Tutors", Toast.LENGTH_SHORT).show();
+                        intent = new Intent(getApplicationContext(),TutorsActivity.class);
+                        startActivity(intent);
                         Log.d(TAG, "onNavigationItemSelected: Tutors");
                         break;
                     case R.id.test_yourself:
-                        Toast.makeText(MainActivity.this, "Test Yourself", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(MainActivity.this, "Test Yourself", Toast.LENGTH_SHORT).show();
+                        intent = new Intent(getApplicationContext(),TestYourselfActivity.class);
+                        startActivity(intent);
                         Log.d(TAG, "onNavigationItemSelected: Test Yourself");
                         break;
                     case R.id.settings:
@@ -85,7 +95,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         Log.d(TAG, "onNavigationItemSelected: Contact us");
                         break;
                     case R.id.model_set:
-                        Toast.makeText(MainActivity.this, "Model Sets", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(MainActivity.this, "Model Sets", Toast.LENGTH_SHORT).show();
+                        intent = new Intent(getApplicationContext(), ModelSetActivity.class);
+                        startActivity(intent);
                         Log.d(TAG, "onNavigationItemSelected: Model Sets");
                         break;
                     case R.id.logout:
