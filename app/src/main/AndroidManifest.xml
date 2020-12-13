@@ -14,9 +14,9 @@
         <activity android:name=".ModelSetActivity" />
         <activity android:name=".TestYourselfActivity" />
         <activity android:name=".CoursesActivity" />
+        <activity android:name=".MainActivity" />
         <activity android:name=".SignUp" />
-        <activity android:name=".Login" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".Login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

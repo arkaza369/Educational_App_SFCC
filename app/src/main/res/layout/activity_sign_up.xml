@@ -9,6 +9,21 @@
     android:padding="30dp"
     tools:context=".SignUp">
 
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Welcome to Student's Friend's Coaching Centre"
+            android:textColor="@color/black_text_color"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:textSize="15sp"/>
+    </RelativeLayout>
+
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -16,6 +31,7 @@
         android:focusableInTouchMode="true">
 
         <EditText
+            android:id="@+id/full_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -32,6 +48,7 @@
         android:focusableInTouchMode="true">
 
         <EditText
+            android:id="@+id/username"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -48,11 +65,12 @@
         android:focusableInTouchMode="true">
 
         <EditText
+            android:id="@+id/email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="@string/enter_email"
-            android:inputType="text"
+            android:inputType="textEmailAddress"
             android:textSize="22sp" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -64,6 +82,24 @@
         android:focusableInTouchMode="true">
 
         <EditText
+            android:id="@+id/mobile_no"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/enter_mobile_no"
+            android:inputType="number"
+            android:textSize="22sp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:focusable="true"
+        android:focusableInTouchMode="true">
+
+        <EditText
+            android:id="@+id/password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -80,6 +116,7 @@
         android:focusableInTouchMode="true">
 
         <EditText
+            android:id="@+id/confirm_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -87,17 +124,31 @@
             android:inputType="textPassword"
             android:textSize="22sp" />
     </com.google.android.material.textfield.TextInputLayout>
-
-    <Button
-        android:layout_width="230dp"
-        android:layout_height="60dp"
-        android:layout_gravity="center_horizontal"
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
-        android:background="@drawable/register_button_background"
-        android:text="@string/register_button"
-        android:textAllCaps="false"
-        android:textColor="@color/white_color"
-        android:textSize="22sp" />
+        android:layout_gravity="center_horizontal">
+        <Button
+            android:layout_width="210dp"
+            android:layout_height="50dp"
+            android:background="@drawable/register_button_background"
+            android:id="@+id/register"
+            android:text="@string/register_button"
+            android:textAllCaps="false"
+            android:textColor="@color/white_color"
+            android:textSize="22sp" />
+        <ProgressBar
+            android:id="@+id/progressbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:visibility="gone" />
+
+
+    </LinearLayout>
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -117,7 +168,8 @@
             android:textStyle="bold" />
 
         <Button
-            android:layout_width="wrap_content"
+            android:id="@+id/login"
+            android:layout_width="78dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="70dp"
             android:background="@drawable/login_button_background"
@@ -125,4 +177,5 @@
             android:textAllCaps="false"
             android:textColor="@color/white_color" />
     </LinearLayout>
+
 </LinearLayout>

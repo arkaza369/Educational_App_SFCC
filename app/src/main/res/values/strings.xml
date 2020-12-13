@@ -31,6 +31,8 @@
     <string name="class_10">Class 10</string>
     <string name="hindi_grammer">Hindi Grammer</string>
     <string name="eng_grammer">English Grammer</string>
+    <string name="enter_mobile_no">Mobile No.</string>
+    <string name="not_a_user">Not a user?Sign up here.</string>
     <!-- <string name="logo_descp">Student's Friend's Coaching Centre</string> -->
 
 </resources>
