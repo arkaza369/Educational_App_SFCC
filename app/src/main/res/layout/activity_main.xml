@@ -121,7 +121,7 @@
                             android:layout_height="64dp"
                             android:background="@drawable/circle_background_purple"
                             android:padding="10dp"
-                            android:src="@drawable/courses">
+                            android:src="@drawable/courses_new">
 
                         </ImageView>
 
@@ -155,7 +155,7 @@
                             android:layout_height="64dp"
                             android:background="@drawable/circle_background_yellow"
                             android:padding="10dp"
-                            android:src="@drawable/tutors">
+                            android:src="@drawable/tutors_new">
 
                         </ImageView>
 
@@ -198,7 +198,7 @@
                             android:layout_height="64dp"
                             android:background="@drawable/circle_background_pink"
                             android:padding="10dp"
-                            android:src="@drawable/model_set">
+                            android:src="@drawable/model_set_new">
 
                         </ImageView>
 
@@ -232,7 +232,7 @@
                             android:layout_height="64dp"
                             android:background="@drawable/circle_background_green"
                             android:padding="10dp"
-                            android:src="@drawable/test">
+                            android:src="@drawable/test_new">
 
                         </ImageView>
 

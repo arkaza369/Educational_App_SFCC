@@ -67,13 +67,14 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
             return;
         }
 
-        if (password.length() < 6) {
+        if ( password.length() < 7) {
             getPassword.setError("Minimum lenght of password should be 6");
             getPassword.requestFocus();
             return;
         }
 
         progressBar.setVisibility(View.VISIBLE);
+        
 
         mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override

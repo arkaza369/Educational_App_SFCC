@@ -92,11 +92,18 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
+
+
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:focusable="true"
-        android:focusableInTouchMode="true">
+        android:focusableInTouchMode="true"
+        app:hintAnimationEnabled="false"
+        app:hintEnabled="false"
+        app:passwordToggleEnabled="true"
+       >
 
         <EditText
             android:id="@+id/password"
@@ -104,7 +111,6 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="@string/enter_password"
-            android:inputType="textPassword"
             android:textSize="22sp" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -113,7 +119,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:focusable="true"
-        android:focusableInTouchMode="true">
+        android:focusableInTouchMode="true"
+        >
 
         <EditText
             android:id="@+id/confirm_password"

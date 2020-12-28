@@ -14,15 +14,21 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class SignUp extends AppCompatActivity implements View.OnClickListener {
     private EditText enterEmail,enterPassword,enterConfirmPassword,enterMobileNO,enterUsername,enterFullName;
     private Button register,login;
     private FirebaseAuth mAuth;
     ProgressBar progressBar;
+    FirebaseDatabase root;
+    DatabaseReference reference;
+    TextInputLayout textInputLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +41,6 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
         enterMobileNO = findViewById(R.id.mobile_no);
         enterUsername = findViewById(R.id.username);
         enterFullName = findViewById(R.id.full_name);
-
         register = findViewById(R.id.register);
         login = findViewById(R.id.login);
 
@@ -50,6 +55,21 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
     private void registerUser(){
         String email = enterEmail.getText().toString().trim();
         String password = enterPassword.getText().toString().trim();
+        String confirmPassword = enterConfirmPassword.getText().toString().trim();
+        String fullName = enterFullName.getText().toString();
+        String username = enterUsername.getText().toString();
+        String phoneNo = enterMobileNO.getText().toString();
+
+        //Saving user data to firebase
+
+        root = FirebaseDatabase.getInstance("https://sfcc-29ece-default-rtdb.firebaseio.com/");
+        reference = root.getReference("users");
+        UserModel userData = new UserModel(fullName,username,email,phoneNo,password);
+      //  String key=reference.push().getKey();
+        reference.setValue(userData);
+
+
+        //Email Authentication
         if (email.isEmpty()) {
             enterEmail.setError("Required");
             enterPassword.requestFocus();
@@ -71,6 +91,11 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
         if (password.length() < 6) {
             enterPassword.setError("Minimum lenght of password should be 6");
             enterPassword.requestFocus();
+            return;
+        }
+        if(!(enterPassword.getText().toString().equals(enterConfirmPassword.getText().toString()))){
+            enterConfirmPassword.setError("Password didn't matched!");
+            enterConfirmPassword.requestFocus();
             return;
         }
 

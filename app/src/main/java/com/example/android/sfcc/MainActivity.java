@@ -19,6 +19,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private Toolbar toolbar;
@@ -27,6 +33,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private ActionBarDrawerToggle toggle;
     private String TAG = "MainActivity";
     private CardView coursesCard,testCard,tutorsCard,modelSetCard;
+
+    DatabaseReference reference;
+    FirebaseAuth mAuth;
 
 
     @Override
@@ -55,6 +64,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         modelSetCard.setOnClickListener(this);
 
         navigationView.setItemIconTintList(null);
+
+        mAuth = FirebaseAuth.getInstance();
 
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -101,8 +112,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         Log.d(TAG, "onNavigationItemSelected: Model Sets");
                         break;
                     case R.id.logout:
-                        Toast.makeText(MainActivity.this, "Log out", Toast.LENGTH_SHORT).show();
-                        Log.d(TAG, "onNavigationItemSelected: Log out");
+                        /*Toast.makeText(MainActivity.this, "Log out", Toast.LENGTH_SHORT).show();
+                        Log.d(TAG, "onNavigationItemSelected: Log out");*/
+                        mAuth.signOut();
+                        intent = new Intent(getApplicationContext(), Login.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(intent);
                         break;
                     default:
                         break;
@@ -112,9 +127,31 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         });
 
         //To access nav_header views i.e. username
-        View view = navigationView.getHeaderView(0);
-        TextView username = view.findViewById(R.id.name);
-        username.setText("Welcome Arkaza");
+
+//Retrieving data of current user from database
+
+        String id = mAuth.getCurrentUser().getUid();
+        reference = FirebaseDatabase.getInstance("https://sfcc-29ece-default-rtdb.firebaseio.com/").
+                getReference();
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for(DataSnapshot datas: dataSnapshot.getChildren()){
+                    String keys=datas.getKey();
+                    String user_name=datas.child("username").getValue().toString();
+                    View view = navigationView.getHeaderView(0);
+                    TextView username = view.findViewById(R.id.name);
+                    username.setText("Welcome " + user_name);
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
     }
 
 

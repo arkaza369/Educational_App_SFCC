@@ -7,19 +7,19 @@
 
     <item
         android:id="@+id/courses"
-        android:icon="@drawable/courses"
+        android:icon="@drawable/courses_new"
         android:title="@string/courses"></item>
     <item
         android:id="@+id/tutors"
-        android:icon="@drawable/tutors"
+        android:icon="@drawable/tutors_new"
         android:title="@string/tutors"></item>
     <item
         android:id="@+id/model_set"
-        android:icon="@drawable/model_set"
+        android:icon="@drawable/model_set_new"
         android:title="@string/model_sets"></item>
     <item
         android:id="@+id/test_yourself"
-        android:icon="@drawable/test"
+        android:icon="@drawable/test_new"
         android:title="@string/test_yourself"></item>
     <item
         android:id="@+id/settings"
