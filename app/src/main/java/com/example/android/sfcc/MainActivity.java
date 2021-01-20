@@ -20,11 +20,13 @@ import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private Toolbar toolbar;
@@ -36,6 +38,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     DatabaseReference reference;
     FirebaseAuth mAuth;
+    FirebaseUser user;
 
 
     @Override
@@ -138,7 +141,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for(DataSnapshot datas: dataSnapshot.getChildren()){
                     String keys=datas.getKey();
-                    String user_name=datas.child("username").getValue().toString();
+                    user = mAuth.getCurrentUser();
+                    String uid = user.getUid();
+                    String user_name=datas.child(uid+"/username").getValue().toString();
                     View view = navigationView.getHeaderView(0);
                     TextView username = view.findViewById(R.id.name);
                     username.setText("Welcome " + user_name);

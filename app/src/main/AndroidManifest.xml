@@ -4,12 +4,14 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/mainlogo"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ClassTen"></activity>
+        <activity android:name=".ForgetPassword"></activity>
+        <activity android:name=".VerifyPhoneNo" />
+        <activity android:name=".ClassTen" />
         <activity android:name=".TutorsActivity" />
         <activity android:name=".ModelSetActivity" />
         <activity android:name=".TestYourselfActivity" />

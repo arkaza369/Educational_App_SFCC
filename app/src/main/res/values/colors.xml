@@ -27,5 +27,6 @@
     <color name="class_10_layout_bck">#FFEBEE</color>
     <color name="eng_grammer_layout_bck">#E3F2FD</color>
     <color name="hindi_grammer_layout_bck">#F9FBE7</color>
-    v
+    <color name="forget_password_background">#ff9e22</color>
+
 </resources>

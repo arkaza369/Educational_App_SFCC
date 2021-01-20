@@ -33,6 +33,7 @@
     <string name="eng_grammer">English Grammer</string>
     <string name="enter_mobile_no">Mobile No.</string>
     <string name="not_a_user">Not a user?Sign up here.</string>
+    <string name="send_forget_password_link">Send Reset Password Link</string>
     <!-- <string name="logo_descp">Student's Friend's Coaching Centre</string> -->
 
 </resources>

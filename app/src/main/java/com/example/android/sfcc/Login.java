@@ -1,8 +1,10 @@
 package com.example.android.sfcc;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
@@ -13,15 +15,19 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class Login extends AppCompatActivity implements View.OnClickListener{
     private EditText getEmail,getPassword;
     private Button register_button,login_button,forgot_password_button;
     ProgressBar progressBar;
     FirebaseAuth mAuth;
+    FirebaseUser user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +48,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
         forgot_password_button.setOnClickListener(this);
 
         mAuth = FirebaseAuth.getInstance();
+        user = mAuth.getCurrentUser();
 
     }
 
@@ -102,17 +109,58 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
     }
     @Override
     public void onClick(View v) {
+        Intent intent;
         switch (v.getId()){
             case R.id.register_button:
-                Intent intent = new Intent(getApplicationContext(),SignUp.class);
+                intent = new Intent(getApplicationContext(),SignUp.class);
                 startActivity(intent);
                 break;
             case R.id.login_button:
                 userLogin();
+                break;
+            case R.id.forgot_password:
+                intent = new Intent(getApplicationContext(),ForgetPassword.class);
+                startActivity(intent);
                 break;
             default:
                 break;
         }
 
     }
+
+  /*  public void resetPassword(View v){
+        final EditText resetPassword = new EditText(v.getContext());
+        final AlertDialog.Builder resetPasswordDialog = new AlertDialog.Builder(v.getContext());
+        resetPasswordDialog.setTitle("Forgot passord or reset password?");
+        resetPasswordDialog.setMessage("Enter new password>6 characters long!");
+        resetPasswordDialog.setView(resetPassword);
+        resetPasswordDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                String newPassword = resetPassword.getText().toString();
+                user.updatePassword(newPassword).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Toast.makeText(Login.this, "Password Reset Successfully!", Toast.LENGTH_SHORT).show();
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(Login.this, "Password Reset Failed!", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+
+        });
+        resetPasswordDialog.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+
+        });
+
+        resetPasswordDialog.create().show();
+
+    }*/
 }

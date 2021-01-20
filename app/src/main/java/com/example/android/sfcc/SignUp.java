@@ -1,10 +1,13 @@
 package com.example.android.sfcc;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
@@ -18,17 +21,26 @@ import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class SignUp extends AppCompatActivity implements View.OnClickListener {
-    private EditText enterEmail,enterPassword,enterConfirmPassword,enterMobileNO,enterUsername,enterFullName;
-    private Button register,login;
+    private EditText enterEmail, enterPassword, enterConfirmPassword, enterMobileNO, enterUsername, enterFullName;
+    private Button register, login;
     private FirebaseAuth mAuth;
     ProgressBar progressBar;
     FirebaseDatabase root;
     DatabaseReference reference;
+    FirebaseUser user;
     TextInputLayout textInputLayout;
+    String email;
+    String password;
+    String confirmPassword;
+    String fullName;
+    String username;
+    String phoneNo;
+    private static final String TAG = "SignUp";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,24 +64,43 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
         mAuth = FirebaseAuth.getInstance();
     }
 
-    private void registerUser(){
-        String email = enterEmail.getText().toString().trim();
-        String password = enterPassword.getText().toString().trim();
-        String confirmPassword = enterConfirmPassword.getText().toString().trim();
-        String fullName = enterFullName.getText().toString();
-        String username = enterUsername.getText().toString();
-        String phoneNo = enterMobileNO.getText().toString();
+    private void registerUser() {
+        email = enterEmail.getText().toString().trim();
+        password = enterPassword.getText().toString().trim();
+        confirmPassword = enterConfirmPassword.getText().toString().trim();
+        fullName = enterFullName.getText().toString();
+        username = enterUsername.getText().toString();
+        phoneNo = enterMobileNO.getText().toString();
 
-        //Saving user data to firebase
+        /*if (phoneNo != null) {
+            new AlertDialog.Builder(this)
+                    .setTitle("Phone Number Authentication")
+                    .setMessage("Do you want to register through phone number verification?")
+                    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            // Verify Phone Number
+                            Intent intent = new Intent(getApplicationContext(), VerifyPhoneNo.class);
+                            intent.putExtra("fullName", fullName);
+                            intent.putExtra("Username", username);
+                            intent.putExtra("phoneNo", phoneNo);
+                            startActivity(intent);
+                        }
+                    })
+                    .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            emailAuthentication();
+                        }
+                    })
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .show();
 
-        root = FirebaseDatabase.getInstance("https://sfcc-29ece-default-rtdb.firebaseio.com/");
-        reference = root.getReference("users");
-        UserModel userData = new UserModel(fullName,username,email,phoneNo,password);
-      //  String key=reference.push().getKey();
-        reference.setValue(userData);
+        }
+        else*/
+        emailAuthentication();
+    }
 
-
-        //Email Authentication
+    public void emailAuthentication() {
         if (email.isEmpty()) {
             enterEmail.setError("Required");
             enterPassword.requestFocus();
@@ -93,7 +124,7 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
             enterPassword.requestFocus();
             return;
         }
-        if(!(enterPassword.getText().toString().equals(enterConfirmPassword.getText().toString()))){
+        if (!(enterPassword.getText().toString().equals(enterConfirmPassword.getText().toString()))) {
             enterConfirmPassword.setError("Password didn't matched!");
             enterConfirmPassword.requestFocus();
             return;
@@ -106,6 +137,7 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 progressBar.setVisibility(View.GONE);
                 if (task.isSuccessful()) {
+                    storeUserDataToDatabase();
                     finish();
                     startActivity(new Intent(getApplicationContext(), MainActivity.class));
                 } else {
@@ -120,21 +152,37 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
                 }
             }
         });
+
+
     }
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.register:
                 registerUser();
                 break;
             case R.id.login:
                 finish();
-                Intent intent = new Intent(getApplicationContext(),Login.class);
+                Intent intent = new Intent(getApplicationContext(), Login.class);
                 startActivity(intent);
                 break;
             default:
                 break;
         }
+    }
+
+    public void storeUserDataToDatabase() {
+        //Saving user data to firebase
+        root = FirebaseDatabase.getInstance("https://sfcc-29ece-default-rtdb.firebaseio.com/");
+        reference = root.getReference("users");
+        UserModel userData = new UserModel(fullName, username, email, phoneNo, password);
+        //  String key=reference.push().getKey();
+        //reference.child(phoneNo).setValue(userData);
+        //reference.setValue(userData);
+        user = mAuth.getCurrentUser();
+        String uid = user.getUid();
+        Log.d(TAG, "storeUserDataToDatabase: "+uid);
+        reference.child(uid).setValue(userData);
     }
 }

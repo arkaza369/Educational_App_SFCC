@@ -90,7 +90,7 @@
             android:textColor="@color/white_color"
             android:textAllCaps="false"
             android:layout_marginLeft="40dp"
-            android:background="@drawable/register_button_background"
+            android:background="@drawable/forget_password_background"
             />
 
 
