@@ -26,6 +26,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.mikhaellopez.circularimageview.CircularImageView;
 
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -39,6 +40,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     DatabaseReference reference;
     FirebaseAuth mAuth;
     FirebaseUser user;
+    private CircularImageView userImageview;
 
 
     @Override
@@ -101,8 +103,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         Log.d(TAG, "onNavigationItemSelected: Test Yourself");
                         break;
                     case R.id.settings:
-                        Toast.makeText(MainActivity.this, "Settings", Toast.LENGTH_SHORT).show();
-                        Log.d(TAG, "onNavigationItemSelected: Settings");
+                        /*Toast.makeText(MainActivity.this, "Settings", Toast.LENGTH_SHORT).show();
+                        Log.d(TAG, "onNavigationItemSelected: Settings");*/
+                        intent = new Intent(getApplicationContext(),Settings.class);
+                        startActivity(intent);
                         break;
                     case R.id.contact_us:
                         Toast.makeText(MainActivity.this, "Contact us", Toast.LENGTH_SHORT).show();
@@ -142,6 +146,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 for(DataSnapshot datas: dataSnapshot.getChildren()){
                     String keys=datas.getKey();
                     user = mAuth.getCurrentUser();
+                    Log.d(TAG, "onDataChange: "+user);
                     String uid = user.getUid();
                     String user_name=datas.child(uid+"/username").getValue().toString();
                     View view = navigationView.getHeaderView(0);

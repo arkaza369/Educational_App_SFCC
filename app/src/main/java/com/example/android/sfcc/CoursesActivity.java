@@ -95,8 +95,10 @@ public class CoursesActivity extends AppCompatActivity  implements View.OnClickL
                         Log.d(TAG, "onNavigationItemSelected: Test Yourself");
                         break;
                     case R.id.settings:
-                        Toast.makeText(CoursesActivity.this, "Settings", Toast.LENGTH_SHORT).show();
-                        Log.d(TAG, "onNavigationItemSelected: Settings");
+                       /* Toast.makeText(CoursesActivity.this, "Settings", Toast.LENGTH_SHORT).show();
+                        Log.d(TAG, "onNavigationItemSelected: Settings");*/
+                        intent = new Intent(getApplicationContext(), Settings.class);
+                        startActivity(intent);
                         break;
                     case R.id.contact_us:
                         Toast.makeText(CoursesActivity.this, "Contact us", Toast.LENGTH_SHORT).show();
