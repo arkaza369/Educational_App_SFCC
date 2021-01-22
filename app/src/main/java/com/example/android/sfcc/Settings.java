@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -84,6 +85,11 @@ public class Settings extends AppCompatActivity {
                     String userName=datas.child(uid+"/fullName").getValue().toString();
                     String phone=datas.child(uid+"/phoneNo").getValue().toString();
                     String email=datas.child(uid+"/email").getValue().toString();
+                    if (datas.hasChild(uid+"/image"))
+                    {
+                        String image = datas.child(uid+"/image").getValue().toString();
+                        Picasso.get().load(image).into(userProfilePic);
+                    }
                     user_name.setText(userName);
                     user_phone_no.setText(phone);
                     user_email_id.setText(email);
@@ -109,7 +115,7 @@ public class Settings extends AppCompatActivity {
                 uploadProfileImage();
             }
         });
-        getUserInfo();
+       // getUserInfo();
 
     }
     private void getUserInfo() {
@@ -126,9 +132,10 @@ public class Settings extends AppCompatActivity {
 
                     if (dataSnapshot.hasChild("image"))
                     {
-                        String image = dataSnapshot.child("image").getValue().toString();
+                        String image = dataSnapshot.child("image").getValue(String.class);
                         Picasso.get().load(image).into(userProfilePic);
                     }
+
                 }
 
             }

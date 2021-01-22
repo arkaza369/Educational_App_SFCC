@@ -27,6 +27,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.mikhaellopez.circularimageview.CircularImageView;
+import com.squareup.picasso.Picasso;
 
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -152,6 +153,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     View view = navigationView.getHeaderView(0);
                     TextView username = view.findViewById(R.id.name);
                     username.setText("Welcome " + user_name);
+                    CircularImageView userProfilePic = view.findViewById(R.id.imageView);
+                    if (datas.hasChild(uid+"/image"))
+                    {
+                        String image = datas.child(uid+"/image").getValue().toString();
+                        Picasso.get().load(image).into(userProfilePic);
+                    }
 
                 }
             }
