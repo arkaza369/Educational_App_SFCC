@@ -38,19 +38,18 @@ public class ForgetPassword extends AppCompatActivity {
                 progressBar.setVisibility(View.VISIBLE);
                 firebaseAuth.sendPasswordResetEmail(emailFP.getText().toString())
                         .addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        progressBar.setVisibility(View.GONE);
-                        if(task.isSuccessful()){
-                            Toast.makeText(ForgetPassword.this,
-                                    "reset password link is sent to your email!",Toast.LENGTH_SHORT).show();
-                        }
-                        else{
-                            Toast.makeText(ForgetPassword.this,
-                                    task.getException().getMessage(),Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                progressBar.setVisibility(View.GONE);
+                                if (task.isSuccessful()) {
+                                    Toast.makeText(ForgetPassword.this,
+                                            "reset password link is sent to your email!", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    Toast.makeText(ForgetPassword.this,
+                                            task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
             }
         });
 

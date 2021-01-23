@@ -27,7 +27,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.mikhaellopez.circularimageview.CircularImageView;
 import com.squareup.picasso.Picasso;
 
-public class CoursesActivity extends AppCompatActivity  implements View.OnClickListener {
+public class CoursesActivity extends AppCompatActivity implements View.OnClickListener {
     private Toolbar toolbar;
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
@@ -133,18 +133,17 @@ public class CoursesActivity extends AppCompatActivity  implements View.OnClickL
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for(DataSnapshot datas: dataSnapshot.getChildren()){
-                    String keys=datas.getKey();
+                for (DataSnapshot datas : dataSnapshot.getChildren()) {
+                    String keys = datas.getKey();
                     user = mAuth.getCurrentUser();
                     String uid = user.getUid();
-                    String user_name=datas.child(uid+"/username").getValue().toString();
+                    String user_name = datas.child(uid + "/username").getValue().toString();
                     View view = navigationView.getHeaderView(0);
                     TextView username = view.findViewById(R.id.name);
                     username.setText("Welcome " + user_name);
                     CircularImageView userProfilePic = view.findViewById(R.id.imageView);
-                    if (datas.hasChild(uid+"/image"))
-                    {
-                        String image = datas.child(uid+"/image").getValue().toString();
+                    if (datas.hasChild(uid + "/image")) {
+                        String image = datas.child(uid + "/image").getValue().toString();
                         Picasso.get().load(image).into(userProfilePic);
                     }
 

@@ -182,7 +182,7 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
         //reference.setValue(userData);
         user = mAuth.getCurrentUser();
         String uid = user.getUid();
-        Log.d(TAG, "storeUserDataToDatabase: "+uid);
+        Log.d(TAG, "storeUserDataToDatabase: " + uid);
         reference.child(uid).setValue(userData);
     }
 }

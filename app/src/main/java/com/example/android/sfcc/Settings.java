@@ -47,6 +47,7 @@ public class Settings extends AppCompatActivity {
     private String myUri = "";
     private StorageTask uploadTask;
     private StorageReference storageProfilePicsRef;
+    private static final String TAG = "Settings";
 
 
 

@@ -22,9 +22,9 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class Login extends AppCompatActivity implements View.OnClickListener{
-    private EditText getEmail,getPassword;
-    private Button register_button,login_button,forgot_password_button;
+public class Login extends AppCompatActivity implements View.OnClickListener {
+    private EditText getEmail, getPassword;
+    private Button register_button, login_button, forgot_password_button;
     ProgressBar progressBar;
     FirebaseAuth mAuth;
     FirebaseUser user;
@@ -52,7 +52,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
 
     }
 
-    private void userLogin(){
+    private void userLogin() {
         String email = getEmail.getText().toString().trim();
         String password = getPassword.getText().toString().trim();
 
@@ -74,14 +74,14 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
             return;
         }
 
-        if ( password.length() < 7) {
+        if (password.length() < 7) {
             getPassword.setError("Minimum lenght of password should be 6");
             getPassword.requestFocus();
             return;
         }
 
         progressBar.setVisibility(View.VISIBLE);
-        
+
 
         mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
@@ -98,6 +98,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
             }
         });
     }
+
     @Override
     protected void onStart() {
         super.onStart();
@@ -107,19 +108,20 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
             startActivity(new Intent(this, MainActivity.class));
         }
     }
+
     @Override
     public void onClick(View v) {
         Intent intent;
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.register_button:
-                intent = new Intent(getApplicationContext(),SignUp.class);
+                intent = new Intent(getApplicationContext(), SignUp.class);
                 startActivity(intent);
                 break;
             case R.id.login_button:
                 userLogin();
                 break;
             case R.id.forgot_password:
-                intent = new Intent(getApplicationContext(),ForgetPassword.class);
+                intent = new Intent(getApplicationContext(), ForgetPassword.class);
                 startActivity(intent);
                 break;
             default:
