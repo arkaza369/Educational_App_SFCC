@@ -14,8 +14,10 @@ import android.os.Handler;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.MediaController;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.VideoView;
 
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -36,9 +38,12 @@ public class ClassTen extends AppCompatActivity {
     private NavigationView navigationView;
     private ActionBarDrawerToggle toggle;
     private String TAG = "ClassTenActivity";
+    private VideoView videoView;
     FirebaseAuth mAuth;
+    MediaController mediaController;
     DatabaseReference reference;
     FirebaseUser user;
+    int startChapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,9 +60,10 @@ public class ClassTen extends AppCompatActivity {
         toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open, R.string.close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
-
+        videoView = findViewById(R.id.sub_video);
         mAuth = FirebaseAuth.getInstance();
-
+        mediaController= new MediaController(this);
+        mediaController.setAnchorView(videoView);
 
         navigationView.setItemIconTintList(null);
 
@@ -88,8 +94,6 @@ public class ClassTen extends AppCompatActivity {
                         Log.d(TAG, "onNavigationItemSelected: Test Yourself");
                         break;
                     case R.id.settings:
-                       /* Toast.makeText(CoursesActivity.this, "Settings", Toast.LENGTH_SHORT).show();
-                        Log.d(TAG, "onNavigationItemSelected: Settings");*/
                         intent = new Intent(getApplicationContext(), Settings.class);
                         startActivity(intent);
                         break;
@@ -121,6 +125,7 @@ public class ClassTen extends AppCompatActivity {
         String id = mAuth.getCurrentUser().getUid();
         reference = FirebaseDatabase.getInstance("https://sfcc-29ece-default-rtdb.firebaseio.com/").
                 getReference();
+        startVideo(startChapter);
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -162,4 +167,7 @@ public class ClassTen extends AppCompatActivity {
 
     }
 
+    private void  startVideo(int startSub){
+
+    }
 }

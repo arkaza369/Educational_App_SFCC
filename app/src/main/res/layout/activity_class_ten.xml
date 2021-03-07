@@ -42,18 +42,23 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/sub_heading"
+            android:layout_margin="20dp"
             android:text="Add the videos of class 10 here...!"
             android:textColor="@color/black_text_color"
             android:textSize="20sp"
-
-
             />
-
+        <VideoView
+            android:id="@+id/sub_video"
+            android:layout_below="@+id/sub_heading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true" />
     </RelativeLayout>
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/navigationView"
-
+        android:visibility="gone"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
