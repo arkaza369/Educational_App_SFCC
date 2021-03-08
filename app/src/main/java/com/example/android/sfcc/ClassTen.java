@@ -1,16 +1,8 @@
 package com.example.android.sfcc;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.cardview.widget.CardView;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
-
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
-import android.os.Handler;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,6 +10,13 @@ import android.widget.MediaController;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.VideoView;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -39,6 +38,7 @@ public class ClassTen extends AppCompatActivity {
     private ActionBarDrawerToggle toggle;
     private String TAG = "ClassTenActivity";
     private VideoView videoView;
+    private TextView sub_heading;
     FirebaseAuth mAuth;
     MediaController mediaController;
     DatabaseReference reference;
@@ -50,7 +50,7 @@ public class ClassTen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_class_ten);
-
+        sub_heading = findViewById(R.id.sub_heading);
         toolbar = findViewById(R.id.toolbar);
         navigationView = findViewById(R.id.navigationView);
         drawerLayout = findViewById(R.id.drawer);
@@ -168,6 +168,25 @@ public class ClassTen extends AppCompatActivity {
     }
 
     private void  startVideo(int startSub){
+         reference.child("course").child("class_10").addValueEventListener(new ValueEventListener() {
+             @Override
+             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                 for (DataSnapshot datas : dataSnapshot.getChildren()) {
+                     if(datas.hasChild(String.valueOf(startSub))) {
+                         sub_heading.setText(datas.child(String.valueOf(startSub)).child("name").getValue().toString());
+                         Uri uri = Uri.parse(datas.child(String.valueOf(startSub)).child("video").getValue().toString());
+                         videoView.setMediaController(mediaController);
+                         videoView.setVideoURI(uri);
+                         videoView.requestFocus();
+                         videoView.start();
+                     }
+                 }
+             }
 
+             @Override
+             public void onCancelled(@NonNull DatabaseError databaseError) {
+
+             }
+         });
     }
 }

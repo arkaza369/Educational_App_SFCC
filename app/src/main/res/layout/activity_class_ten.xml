@@ -46,7 +46,7 @@
             android:layout_margin="20dp"
             android:text="Add the videos of class 10 here...!"
             android:textColor="@color/black_text_color"
-            android:textSize="20sp"
+            android:textSize="20dp"
             />
         <VideoView
             android:id="@+id/sub_video"
