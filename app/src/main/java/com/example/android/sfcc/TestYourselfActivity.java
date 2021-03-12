@@ -118,7 +118,7 @@ public class TestYourselfActivity extends AppCompatActivity {
 
         String id = mAuth.getCurrentUser().getUid();
         reference = FirebaseDatabase.getInstance("https://sfcc-29ece-default-rtdb.firebaseio.com/").
-                getReference();
+                getReference("users");
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -126,7 +126,7 @@ public class TestYourselfActivity extends AppCompatActivity {
                     String keys = datas.getKey();
                     user = mAuth.getCurrentUser();
                     String uid = user.getUid();
-                    String user_name = datas.child(uid + "/username").getValue().toString();
+                    String user_name = datas.child("/username").getValue().toString();
                     View view = navigationView.getHeaderView(0);
                     TextView username = view.findViewById(R.id.name);
                     username.setText("Welcome " + user_name);

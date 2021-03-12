@@ -17,13 +17,19 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
 
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.android.exoplayer2.ExoPlayerFactory;
 import com.google.android.exoplayer2.SimpleExoPlayer;
 import com.google.android.exoplayer2.source.MediaSource;
 import com.google.android.exoplayer2.source.ProgressiveMediaSource;
 import com.google.android.exoplayer2.ui.PlayerView;
+import com.google.android.exoplayer2.ui.SimpleExoPlayerView;
 import com.google.android.exoplayer2.upstream.DataSource;
+import com.google.android.exoplayer2.upstream.DefaultBandwidthMeter;
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
 import com.google.android.exoplayer2.util.Util;
 import com.google.android.material.navigation.NavigationView;
@@ -45,22 +51,23 @@ public class ClassTen extends AppCompatActivity {
     private NavigationView navigationView;
     private ActionBarDrawerToggle toggle;
     private String TAG = "ClassTenActivity";
-    private VideoView videoView;
-    //  private PlayerView videoView;
-    private TextView sub_heading;
+   // private SimpleExoPlayerView videoView;
+    // private PlayerView videoView;
+   // private TextView sub_heading;
     FirebaseAuth mAuth;
-    MediaController mediaController;
-    DatabaseReference reference_header,reference_videos,reference;
+    //MediaController mediaController;
+    DatabaseReference reference_header, reference_videos, reference;
     FirebaseUser user;
-    //int startChapter = 2;
-    int startChapter  ;
-
+   // int startChapter = 2;
+   // DefaultBandwidthMeter bandwidthMeter = new DefaultBandwidthMeter();
+    RecyclerView mRecyclerView;
+    FirebaseDatabase database;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_class_ten);
-        sub_heading = findViewById(R.id.sub_heading);
+        //sub_heading = findViewById(R.id.sub_heading);
         toolbar = findViewById(R.id.toolbar);
         navigationView = findViewById(R.id.navigationView);
         drawerLayout = findViewById(R.id.drawer);
@@ -70,11 +77,10 @@ public class ClassTen extends AppCompatActivity {
         toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open, R.string.close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
-        // videoView = findViewById(R.id.video_view);
-        videoView = findViewById(R.id.sub_video);
+        //videoView = findViewById(R.id.video_view);
         mAuth = FirebaseAuth.getInstance();
-        mediaController= new MediaController(this);
-        mediaController.setAnchorView(videoView);
+       /* mediaController = new MediaController(this);
+        mediaController.setAnchorView(videoView);*/
 
         navigationView.setItemIconTintList(null);
 
@@ -132,7 +138,7 @@ public class ClassTen extends AppCompatActivity {
         });
 
         //To access nav_header views i.e. username
-        startVideo(startChapter);
+       // startVideo(startChapter);
         String id = mAuth.getCurrentUser().getUid();
         reference_header = FirebaseDatabase.getInstance("https://sfcc-29ece-default-rtdb.firebaseio.com/").
                 getReference("users");
@@ -146,13 +152,13 @@ public class ClassTen extends AppCompatActivity {
                     String keys = datas.getKey();
                     user = mAuth.getCurrentUser();
                     String uid = user.getUid();
-                    String user_name = datas.child( "/username").getValue().toString();
+                    String user_name = datas.child("/username").getValue().toString();
                     View view = navigationView.getHeaderView(0);
                     TextView username = view.findViewById(R.id.name);
                     username.setText("Welcome " + user_name);
                     CircularImageView userProfilePic = view.findViewById(R.id.imageView);
-                    if (datas.hasChild(  "/image")) {
-                        String image = datas.child( "/image").getValue().toString();
+                    if (datas.hasChild("/image")) {
+                        String image = datas.child("/image").getValue().toString();
                         Picasso.get().load(image).into(userProfilePic);
                     }
 
@@ -164,10 +170,33 @@ public class ClassTen extends AppCompatActivity {
 
             }
         });
+        mRecyclerView = findViewById(R.id.recyclerview_videos);
+        mRecyclerView.setHasFixedSize(false);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        reference_videos = FirebaseDatabase.getInstance("https://sfcc-29ece-default-rtdb.firebaseio.com/").
+                getReference("course/class_10");
 
 
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        FirebaseRecyclerAdapter<VideoModelClass, ViewHolder>firebaseRecyclerAdapter =
+                new FirebaseRecyclerAdapter<VideoModelClass, ViewHolder>(
+                        VideoModelClass.class,
+                        R.layout.video_row,
+                        ViewHolder.class,
+                        reference_videos
+                ) {
+            @Override
+            protected void populateViewHolder(ViewHolder viewHolder, VideoModelClass videoModelClass, int i) {
+                viewHolder.setVideo(getApplication(),videoModelClass.getName(),videoModelClass.getVideo());
+
+            }
+        };
+        mRecyclerView.setAdapter(firebaseRecyclerAdapter);
+    }
 
     @Override
     public void onBackPressed() {
@@ -180,54 +209,30 @@ public class ClassTen extends AppCompatActivity {
 
     }
 
-   /* private void  startVideo(int startSub){
+   /* private void startVideo(int startSub) {
         reference_videos = FirebaseDatabase.getInstance("https://sfcc-29ece-default-rtdb.firebaseio.com/").
                 getReference("course");
         reference_videos.addValueEventListener(new ValueEventListener() {
-             @Override
-             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-                 for (DataSnapshot datas : dataSnapshot.getChildren()) {
-                     Log.d(TAG, "onDataChange: "+datas);
-                     String user_name = datas.child(String.valueOf(startSub)+"/name").getValue().toString();
-                     Log.d(TAG, "onDataChange: "+user_name);
-                     if(datas.hasChild(String.valueOf(startSub))) {
-                         Log.d(TAG, "onDataChange:2 "+datas.child(String.valueOf(startSub)).child("name").getValue().toString());
-                         sub_heading.setText(datas.child(String.valueOf(startSub)).child("name").getValue().toString());
-                         Uri uri = Uri.parse(datas.child(String.valueOf(startSub)).child("video").getValue().toString());
-                         SimpleExoPlayer player = ExoPlayerFactory.newSimpleInstance(getApplicationContext());
-                         videoView.setPlayer(player);
-
-                         DataSource.Factory dataSourceFactory =
-                                 new DefaultDataSourceFactory(getApplicationContext(), Util.getUserAgent( getApplicationContext(),"ClassTen"));
-                         MediaSource videoSource =
-                                 new ProgressiveMediaSource.Factory(dataSourceFactory).createMediaSource(uri);
-// P
-                         player.prepare(videoSource);
-                         player.setPlayWhenReady(true);
-                     }
-                 }
-             }
-
-             @Override
-             public void onCancelled(@NonNull DatabaseError databaseError) {
-
-             }
-         });
-    }*/
-
-    private void  startVideo(int startSub){
-        reference.child("course").child("class_10").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
                 for (DataSnapshot datas : dataSnapshot.getChildren()) {
-                    if(datas.hasChild(String.valueOf(startSub))) {
+                    Log.d(TAG, "onDataChange: " + datas);
+                    String user_name = datas.child(String.valueOf(startSub) + "/name").getValue().toString();
+                    Log.d(TAG, "onDataChange: " + user_name);
+                    if (datas.hasChild(String.valueOf(startSub))) {
+                        Log.d(TAG, "onDataChange:2 " + datas.child(String.valueOf(startSub)).child("name").getValue().toString());
                         sub_heading.setText(datas.child(String.valueOf(startSub)).child("name").getValue().toString());
                         Uri uri = Uri.parse(datas.child(String.valueOf(startSub)).child("video").getValue().toString());
-                        videoView.setMediaController(mediaController);
-                        videoView.setVideoURI(uri);
-                        videoView.requestFocus();
-                        videoView.start();
+                        SimpleExoPlayer player = ExoPlayerFactory.newSimpleInstance(getApplicationContext());
+                        videoView.setPlayer(player);
+
+                        DataSource.Factory dataSourceFactory =
+                                new DefaultDataSourceFactory(getApplicationContext(), Util.getUserAgent(getApplicationContext(), "ClassTen"),bandwidthMeter);
+                        MediaSource videoSource =
+                                new ProgressiveMediaSource.Factory(dataSourceFactory).createMediaSource(uri);
+                        player.prepare(videoSource);
+                        player.setPlayWhenReady(true);
                     }
                 }
             }
@@ -237,5 +242,7 @@ public class ClassTen extends AppCompatActivity {
 
             }
         });
-    }
+    }*/
+
+
 }
