@@ -45,10 +45,10 @@ dependencies {
     implementation 'com.squareup.picasso:picasso:2.71828'
     //  implementation "com.android.support:design:24.2.0"
     implementation 'com.google.android.exoplayer:exoplayer:2.10.8'
-    implementation 'com.google.android.exoplayer:exoplayer-core:2.10.8'
-    implementation 'com.google.android.exoplayer:exoplayer-dash:2.10.8'
     implementation 'com.google.android.exoplayer:exoplayer-hls:2.10.8'
     implementation 'com.google.android.exoplayer:exoplayer-smoothstreaming:2.10.8'
+    implementation 'com.google.android.exoplayer:exoplayer-core:2.10.8'
+    implementation 'com.google.android.exoplayer:exoplayer-dash:2.10.8'
     implementation 'com.google.android.exoplayer:exoplayer-ui:2.10.8'
     compile 'com.firebaseui:firebase-ui-database:0.4.0'
     implementation 'com.firebaseui:firebase-ui-database:2.2.0'

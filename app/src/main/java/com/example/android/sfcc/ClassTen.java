@@ -51,15 +51,10 @@ public class ClassTen extends AppCompatActivity {
     private NavigationView navigationView;
     private ActionBarDrawerToggle toggle;
     private String TAG = "ClassTenActivity";
-   // private SimpleExoPlayerView videoView;
-    // private PlayerView videoView;
-   // private TextView sub_heading;
+
     FirebaseAuth mAuth;
-    //MediaController mediaController;
     DatabaseReference reference_header, reference_videos, reference;
     FirebaseUser user;
-   // int startChapter = 2;
-   // DefaultBandwidthMeter bandwidthMeter = new DefaultBandwidthMeter();
     RecyclerView mRecyclerView;
     FirebaseDatabase database;
     @Override
@@ -67,7 +62,6 @@ public class ClassTen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_class_ten);
-        //sub_heading = findViewById(R.id.sub_heading);
         toolbar = findViewById(R.id.toolbar);
         navigationView = findViewById(R.id.navigationView);
         drawerLayout = findViewById(R.id.drawer);
@@ -77,16 +71,13 @@ public class ClassTen extends AppCompatActivity {
         toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open, R.string.close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
-        //videoView = findViewById(R.id.video_view);
         mAuth = FirebaseAuth.getInstance();
-       /* mediaController = new MediaController(this);
-        mediaController.setAnchorView(videoView);*/
-
         navigationView.setItemIconTintList(null);
 
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
                 drawerLayout.closeDrawer(GravityCompat.START);
                 Intent intent;
                 switch (item.getItemId()) {
@@ -191,7 +182,7 @@ public class ClassTen extends AppCompatActivity {
                 ) {
             @Override
             protected void populateViewHolder(ViewHolder viewHolder, VideoModelClass videoModelClass, int i) {
-                viewHolder.setVideo(getApplication(),videoModelClass.getName(),videoModelClass.getVideo());
+                viewHolder.setVideos(getApplication(),videoModelClass.getDescription(),videoModelClass.getName(),videoModelClass.getVideo());
 
             }
         };
@@ -208,41 +199,13 @@ public class ClassTen extends AppCompatActivity {
 
 
     }
+    @Override
+    protected void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        toggle.syncState();
+    }
 
-   /* private void startVideo(int startSub) {
-        reference_videos = FirebaseDatabase.getInstance("https://sfcc-29ece-default-rtdb.firebaseio.com/").
-                getReference("course");
-        reference_videos.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                for (DataSnapshot datas : dataSnapshot.getChildren()) {
-                    Log.d(TAG, "onDataChange: " + datas);
-                    String user_name = datas.child(String.valueOf(startSub) + "/name").getValue().toString();
-                    Log.d(TAG, "onDataChange: " + user_name);
-                    if (datas.hasChild(String.valueOf(startSub))) {
-                        Log.d(TAG, "onDataChange:2 " + datas.child(String.valueOf(startSub)).child("name").getValue().toString());
-                        sub_heading.setText(datas.child(String.valueOf(startSub)).child("name").getValue().toString());
-                        Uri uri = Uri.parse(datas.child(String.valueOf(startSub)).child("video").getValue().toString());
-                        SimpleExoPlayer player = ExoPlayerFactory.newSimpleInstance(getApplicationContext());
-                        videoView.setPlayer(player);
-
-                        DataSource.Factory dataSourceFactory =
-                                new DefaultDataSourceFactory(getApplicationContext(), Util.getUserAgent(getApplicationContext(), "ClassTen"),bandwidthMeter);
-                        MediaSource videoSource =
-                                new ProgressiveMediaSource.Factory(dataSourceFactory).createMediaSource(uri);
-                        player.prepare(videoSource);
-                        player.setPlayWhenReady(true);
-                    }
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-    }*/
 
 
 }

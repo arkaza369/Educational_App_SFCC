@@ -21,9 +21,12 @@ import com.google.android.exoplayer2.trackselection.TrackSelection;
 import com.google.android.exoplayer2.trackselection.TrackSelector;
 import com.google.android.exoplayer2.ui.PlayerView;
 import com.google.android.exoplayer2.upstream.BandwidthMeter;
+import com.google.android.exoplayer2.upstream.DataSource;
 import com.google.android.exoplayer2.upstream.DefaultBandwidthMeter;
+import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
 import com.google.android.exoplayer2.upstream.DefaultHttpDataSource;
 import com.google.android.exoplayer2.upstream.DefaultHttpDataSourceFactory;
+import com.google.android.exoplayer2.util.Util;
 import com.google.android.material.tabs.TabLayout;
 
 import androidx.annotation.NonNull;
@@ -40,24 +43,28 @@ public class ViewHolder extends RecyclerView.ViewHolder {
         mView = itemView;
     }
 
-    public void setVideo(final Application ctx,String title,final String video){
+    public void setVideos(final Application ctx,String description,String title,final String video ){
         TextView mTextView = mView.findViewById(R.id.video_title);
+        TextView mVideoDescription = mView.findViewById(R.id.video_descp);
         mExoplayerView = mView.findViewById(R.id.exoplayer_view);
         mTextView.setText(title);
+        mVideoDescription.setText(description);
         try{
             BandwidthMeter bandwidthMeter = new DefaultBandwidthMeter.Builder(ctx).build();
+          //  BandwidthMeter bandwidthMeter = new DefaultBandwidthMeter();
             TrackSelector trackSelector = new DefaultTrackSelector(new AdaptiveTrackSelection.Factory(bandwidthMeter));
             LoadControl loadControl = new DefaultLoadControl();
-            SimpleExoPlayer exoPlayer = (SimpleExoPlayer)ExoPlayerFactory.newSimpleInstance(mExoplayerView.getContext(), trackSelector, loadControl);
+           // SimpleExoPlayer exoPlayer = (SimpleExoPlayer)ExoPlayerFactory.newSimpleInstance(mExoplayerView.getContext(), trackSelector, loadControl);
 
-           // exoPlayer = (SimpleExoPlayer) ExoPlayerFactory.newSimpleInstance(ctx);
+            exoPlayer = (SimpleExoPlayer) ExoPlayerFactory.newSimpleInstance(ctx);
             Uri videos= Uri.parse(video);
             DefaultHttpDataSourceFactory dataSourceFactory=new DefaultHttpDataSourceFactory("class_10");
             ExtractorsFactory extractorsFactory = new DefaultExtractorsFactory();
             MediaSource mediaSource = new ExtractorMediaSource(videos,dataSourceFactory,extractorsFactory,null,null);
             mExoplayerView.setPlayer(exoPlayer);
             exoPlayer.prepare(mediaSource);
-            exoPlayer.setPlayWhenReady(false);
+           // exoPlayer.setPlayWhenReady(sh);
+            exoPlayer.setPlayWhenReady(true);
         }catch (Exception e){
             Log.e(TAG, "exoPlayerError: "+ e.toString());
         }

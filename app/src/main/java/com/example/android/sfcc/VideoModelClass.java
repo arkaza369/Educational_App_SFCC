@@ -3,9 +3,22 @@ package com.example.android.sfcc;
 import android.net.Uri;
 
 public class VideoModelClass {
+
+    String description;
     String name;
     String video;
+
     public VideoModelClass(){};
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+
 
     public String getName() {
         return name;
@@ -22,4 +35,5 @@ public class VideoModelClass {
     public void setVideo(String video) {
         this.video = video;
     }
+
 }
