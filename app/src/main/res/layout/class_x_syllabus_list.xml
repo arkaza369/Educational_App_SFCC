@@ -4,7 +4,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="20dp"
+    android:layout_marginTop="10dp"
     app:cardCornerRadius="2dp"
     app:cardBackgroundColor="@color/white_color"
     app:cardElevation="2dp"
@@ -13,7 +13,7 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="2dp"
+        android:paddingBottom="1dp"
         android:background="@color/colorPrimary">
         <LinearLayout
             android:layout_width="match_parent"
@@ -27,8 +27,8 @@
                 android:textStyle="bold"
                 android:gravity="center"
                 android:textColor="@color/white_color"
-                android:background="@color/black_text_color"
-                android:text="Chapter Title"/>
+                android:background="@color/civ_shadow_color"
+                android:text="@string/class_x_chaper_title"/>
 
 
         </LinearLayout>

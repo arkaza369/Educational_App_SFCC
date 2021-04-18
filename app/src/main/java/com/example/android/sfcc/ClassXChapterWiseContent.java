@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -18,6 +19,21 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.google.android.exoplayer2.DefaultLoadControl;
+import com.google.android.exoplayer2.ExoPlayerFactory;
+import com.google.android.exoplayer2.LoadControl;
+import com.google.android.exoplayer2.SimpleExoPlayer;
+import com.google.android.exoplayer2.extractor.DefaultExtractorsFactory;
+import com.google.android.exoplayer2.extractor.ExtractorsFactory;
+import com.google.android.exoplayer2.source.ExtractorMediaSource;
+import com.google.android.exoplayer2.source.MediaSource;
+import com.google.android.exoplayer2.trackselection.AdaptiveTrackSelection;
+import com.google.android.exoplayer2.trackselection.DefaultTrackSelector;
+import com.google.android.exoplayer2.trackselection.TrackSelector;
+import com.google.android.exoplayer2.ui.PlayerView;
+import com.google.android.exoplayer2.upstream.BandwidthMeter;
+import com.google.android.exoplayer2.upstream.DefaultBandwidthMeter;
+import com.google.android.exoplayer2.upstream.DefaultHttpDataSourceFactory;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -29,29 +45,41 @@ import com.google.firebase.database.ValueEventListener;
 import com.mikhaellopez.circularimageview.CircularImageView;
 import com.squareup.picasso.Picasso;
 
-public class ClassXSyllabusList extends AppCompatActivity {
+public class ClassXChapterWiseContent extends AppCompatActivity {
 
     private Toolbar toolbar;
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
     private ActionBarDrawerToggle toggle;
-    private String TAG = "ClassXSyllabusList";
+    private String TAG = "ClassXChapterWiseContent";
+    int lastClickedItemPosition;
+
+    private TextView chapter_title,chapter_descp;
+    SimpleExoPlayer exoPlayer;
+    private PlayerView mExoplayerView;
 
     FirebaseAuth mAuth;
-    DatabaseReference reference_header, reference_classX_syllabus_list, reference;
+    DatabaseReference reference_header, reference_videos, reference;
     FirebaseUser user;
-    RecyclerView mRecyclerView;
     FirebaseDatabase database;
+    DataSnapshot dataSnap;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_class_xsyllabus_list);
+        setContentView(R.layout.activity_class_xchapter_wise_content);
         toolbar = findViewById(R.id.toolbar);
         navigationView = findViewById(R.id.navigationView);
         drawerLayout = findViewById(R.id.drawer);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("SFCC");
+
+
+        chapter_title = findViewById(R.id.video_title_chapterwise);
+        chapter_descp = findViewById(R.id.video_descp_chapterwise);
+        mExoplayerView = findViewById(R.id.exoplayer_view_chapterwise);
 
         toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open, R.string.close);
         drawerLayout.addDrawerListener(toggle);
@@ -91,7 +119,7 @@ public class ClassXSyllabusList extends AppCompatActivity {
                         startActivity(intent);
                         break;
                     case R.id.contact_us:
-                        Toast.makeText(ClassXSyllabusList.this, "Contact us", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ClassXChapterWiseContent.this, "Contact us", Toast.LENGTH_SHORT).show();
                         Log.d(TAG, "onNavigationItemSelected: Contact us");
                         break;
                     case R.id.model_set:
@@ -146,40 +174,59 @@ public class ClassXSyllabusList extends AppCompatActivity {
 
             }
         });
-        mRecyclerView = findViewById(R.id.recyclerview_classx_syllabus_list);
-        mRecyclerView.setHasFixedSize(false);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        reference_classX_syllabus_list = FirebaseDatabase.getInstance("https://sfcc-29ece-default-rtdb.firebaseio.com/").
+
+
+        Intent mIntent = getIntent();
+        lastClickedItemPosition = mIntent.getIntExtra("CurrentAdapterPosition", 0);
+        Log.i(TAG, "onClick: "+lastClickedItemPosition);
+        reference_videos = FirebaseDatabase.getInstance("https://sfcc-29ece-default-rtdb.firebaseio.com/").
                 getReference("course/class_10");
 
 
+        reference_videos.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshots) {
+               // dataSnap = dataSnapshots;
+                int index = 0;
+                for (DataSnapshot childSnapshot : dataSnapshots.getChildren()) {
+                    if (index == lastClickedItemPosition) {
+                        String chapter_name = childSnapshot.child("/name").getValue().toString();
+                        String description = childSnapshot.child("/description").getValue().toString();
+                        String video = childSnapshot.child("/video").getValue().toString();
+                        chapter_title.setText(chapter_name);
+                        chapter_descp.setText(description);
+                        try{
+                            BandwidthMeter bandwidthMeter = new DefaultBandwidthMeter.Builder(getApplicationContext()).build();
+                            TrackSelector trackSelector = new DefaultTrackSelector(new AdaptiveTrackSelection.Factory(bandwidthMeter));
+                            LoadControl loadControl = new DefaultLoadControl();
+                            exoPlayer = (SimpleExoPlayer) ExoPlayerFactory.newSimpleInstance(getApplicationContext());
+                            Uri videos= Uri.parse(video);
+                            DefaultHttpDataSourceFactory dataSourceFactory=new DefaultHttpDataSourceFactory("class_10");
+                            ExtractorsFactory extractorsFactory = new DefaultExtractorsFactory();
+                            MediaSource mediaSource = new ExtractorMediaSource(videos,dataSourceFactory,extractorsFactory,null,null);
+                            mExoplayerView.setPlayer(exoPlayer);
+                            exoPlayer.prepare(mediaSource);
+                            exoPlayer.setPlayWhenReady(true);
+
+                        }catch (Exception e){
+                            Log.e(TAG, "exoPlayerError: "+ e.toString());
+                        }
+                        Log.i(TAG, "onClick: "+chapter_name+ " "+description);
+                    }
+
+                    index++;
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+            }
+        });
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        FirebaseRecyclerAdapter<ClassXViewModelClass, ClassXViewModel> firebaseRecyclerAdapter =
-                new FirebaseRecyclerAdapter<ClassXViewModelClass, ClassXViewModel>(
-                        ClassXViewModelClass.class,
-                        R.layout.class_x_syllabus_list,
-                        ClassXViewModel.class,
-                        reference_classX_syllabus_list
-                ) {
-                    @Override
-                    protected void populateViewHolder(ClassXViewModel viewHolder, ClassXViewModelClass viewModelClass, int i) {
-                        viewHolder.classXSetVideos(getApplication(),viewModelClass.getName());
-                        /*viewHolder.mView.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                Log.i(TAG, "Item Clicked....");
-                                // This WORKS, write your TODO here
-
-                            }
-                        });*/
-
-                    }
-                };
-        mRecyclerView.setAdapter(firebaseRecyclerAdapter);
     }
 
     @Override
@@ -189,13 +236,16 @@ public class ClassXSyllabusList extends AppCompatActivity {
         } else {
             super.onBackPressed();
         }
-
-
     }
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
         toggle.syncState();
+    }
+    @Override
+    public void onPause() {
+        super.onPause();
+        exoPlayer.setPlayWhenReady(false);
     }
 
 
