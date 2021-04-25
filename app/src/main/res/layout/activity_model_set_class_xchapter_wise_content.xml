@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".ClassXSyllabusList"
+    tools:context=".ModelSetClassXChapterWiseContent"
     tools:openDrawer="start">
 
 
@@ -37,16 +37,18 @@
 
 
     <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center">
-        <androidx.recyclerview.widget.RecyclerView
+
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        >
+
+        <!--PDF View for displaying our PDF-->
+        <com.github.barteksc.pdfviewer.PDFView
+            android:id="@+id/pdfView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/recyclerview_classx_syllabus_list"/>
+            android:layout_height="match_parent" />
 
     </RelativeLayout>
-
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/navigationView"

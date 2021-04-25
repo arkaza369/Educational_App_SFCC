@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    app:cardCornerRadius="2dp"
+    app:cardBackgroundColor="@color/white_color"
+    app:cardElevation="2dp"
+    app:contentPadding="2dp"
+    app:cardUseCompatPadding="true">
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="1dp"
+        android:background="@color/colorPrimary">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:id="@+id/model_set_class_x_pdf_title"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:textColor="@color/white_color"
+                android:background="@color/civ_shadow_color"
+                android:text="@string/class_x_chaper_title"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/model_set_class_x_pdf_descp"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:paddingTop="5dp"
+                android:textColor="@color/login_button_background"
+                android:background="@color/background_layout"
+                android:text="@string/class_x_chaper_descp"/>
+
+
+        </LinearLayout>
+
+    </FrameLayout>
+
+</androidx.cardview.widget.CardView>

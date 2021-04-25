@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".ClassXSyllabusList"
+    tools:context=".ModelSetClassXSyllabusList"
     tools:openDrawer="start">
 
 
@@ -43,7 +43,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/recyclerview_classx_syllabus_list"/>
+            android:id="@+id/model_set_recyclerview_classx_syllabus_list"/>
 
     </RelativeLayout>
 
@@ -58,5 +58,6 @@
         app:headerLayout="@layout/nav_header"
         app:insetForeground="@color/insetForeground"
         app:menu="@menu/nav_menu" />
+
 
 </androidx.drawerlayout.widget.DrawerLayout>
