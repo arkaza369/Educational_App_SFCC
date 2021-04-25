@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".ClassTen"
+    tools:context=".ClassXChapterWiseContent"
     tools:openDrawer="start">
 
 
@@ -77,6 +77,8 @@
                         android:background="@color/black_text_color"
                         app:resize_mode="fill"
                         android:layout_gravity="center"/>
+
+
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
