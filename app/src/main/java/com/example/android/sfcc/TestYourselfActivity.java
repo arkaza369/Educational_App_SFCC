@@ -35,6 +35,7 @@ public class TestYourselfActivity extends AppCompatActivity {
     private ActionBarDrawerToggle toggle;
     private String TAG = "TestYourselfActivity";
     private CardView class_8, class_9, class_10, hindi_grammer, eng_grammer;
+    private CardView class_10_test;
     FirebaseAuth mAuth;
     DatabaseReference reference;
     FirebaseUser user;
@@ -45,6 +46,7 @@ public class TestYourselfActivity extends AppCompatActivity {
         setContentView(R.layout.activity_test_yourself);
 
         toolbar = findViewById(R.id.toolbar);
+        class_10_test = findViewById(R.id.class_10_test);
         navigationView = findViewById(R.id.navigationView);
         drawerLayout = findViewById(R.id.drawer);
         setSupportActionBar(toolbar);
@@ -145,6 +147,15 @@ public class TestYourselfActivity extends AppCompatActivity {
             }
         });
 
+        class_10_test.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent mIntent = new Intent(this, TestYourselfDetailActivity.class);
+                Bundle extras = mIntent.getExtras();
+                extras.putString("class", "ten");
+                startActivity(mIntent);
+            }
+        });
 
     }
 
