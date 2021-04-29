@@ -147,14 +147,11 @@ public class TestYourselfActivity extends AppCompatActivity {
             }
         });
 
-        class_10_test.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent mIntent = new Intent(this, TestYourselfDetailActivity.class);
-                Bundle extras = mIntent.getExtras();
-                extras.putString("class", "ten");
-                startActivity(mIntent);
-            }
+        class_10_test.setOnClickListener(view -> {
+            Intent mIntent = new Intent(view.getContext(),TestYourselfDetailActivity.class);
+            Bundle extras = mIntent.getExtras();
+            extras.putString("class", "ten");
+            startActivity(mIntent);
         });
 
     }

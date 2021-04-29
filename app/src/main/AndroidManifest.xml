@@ -24,6 +24,7 @@
         <activity android:name=".TutorsActivity" />
         <activity android:name=".ModelSetActivity" />
         <activity android:name=".TestYourselfActivity" />
+        <activity android:name=".TestYourselfDetailActivity" />
         <activity android:name=".CoursesActivity" />
         <activity android:name=".MainActivity" />
         <activity android:name=".SignUp" />
