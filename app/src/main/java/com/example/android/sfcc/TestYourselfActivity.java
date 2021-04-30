@@ -148,15 +148,16 @@ public class TestYourselfActivity extends AppCompatActivity {
         });
 
         class_10_test.setOnClickListener(view -> {
-            Intent mIntent = new Intent(view.getContext(),TestYourselfDetailActivity.class);
-            Bundle extras = mIntent.getExtras();
-            extras.putString("class", "ten");
-            startActivity(mIntent);
+            startNewActivity("ten");
         });
 
     }
 
-
+    public void startNewActivity(String testName){
+        Intent mIntent = new Intent(this,TestYourselfDetailActivity.class);
+        mIntent.putExtra("class", testName);
+        startActivity(mIntent);
+    }
     @Override
     public void onBackPressed() {
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
