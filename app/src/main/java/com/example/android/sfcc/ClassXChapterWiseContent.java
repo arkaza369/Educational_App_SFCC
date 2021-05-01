@@ -18,6 +18,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.facebook.shimmer.ShimmerFrameLayout;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.android.exoplayer2.DefaultLoadControl;
 import com.google.android.exoplayer2.ExoPlayerFactory;
@@ -65,6 +66,8 @@ public class ClassXChapterWiseContent extends AppCompatActivity {
     DataSnapshot dataSnap;
 
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,9 +80,11 @@ public class ClassXChapterWiseContent extends AppCompatActivity {
         getSupportActionBar().setTitle("SFCC");
 
 
+
         chapter_title = findViewById(R.id.video_title_chapterwise);
         chapter_descp = findViewById(R.id.video_descp_chapterwise);
         mExoplayerView = findViewById(R.id.exoplayer_view_chapterwise);
+
 
         toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open, R.string.close);
         drawerLayout.addDrawerListener(toggle);
@@ -211,6 +216,7 @@ public class ClassXChapterWiseContent extends AppCompatActivity {
                         }catch (Exception e){
                             Log.e(TAG, "exoPlayerError: "+ e.toString());
                         }
+
                         Log.i(TAG, "onClick: "+chapter_name+ " "+description);
                     }
 
@@ -245,9 +251,12 @@ public class ClassXChapterWiseContent extends AppCompatActivity {
     @Override
     public void onPause() {
         super.onPause();
+
         exoPlayer.setPlayWhenReady(false);
     }
 
-
-
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
 }

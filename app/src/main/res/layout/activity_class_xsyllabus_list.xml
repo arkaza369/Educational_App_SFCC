@@ -34,18 +34,58 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-
-
     <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center">
-        <androidx.recyclerview.widget.RecyclerView
-            android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/shimmer_view_container"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/recyclerview_classx_syllabus_list"/>
+            android:layout_gravity="center"
+            android:layout_marginTop="62dp"
+            android:orientation="vertical"
+            app:shimmer_duration="800">
+            <!--shimmer:duration="800" >-->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/placeholderTextHeight"
+                android:background="@color/background"
+                android:layout_marginTop="@dimen/padding_10"/>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/recyclerview_classx_syllabus_list"/>
+
+            </RelativeLayout>
+
+            <!-- Adding 7 rows of placeholders -->
+            <!-- <LinearLayout
+                 android:layout_width="match_parent"
+                 android:layout_height="50dp"
+                 android:orientation="vertical">
+                 <include layout="@layout/class_x_syllabus_list" />
+                 <include layout="@layout/class_x_syllabus_list" />
+                 <include layout="@layout/class_x_syllabus_list" />
+                 <include layout="@layout/class_x_syllabus_list" />
+                 <include layout="@layout/class_x_syllabus_list" />
+                 <include layout="@layout/class_x_syllabus_list" />
+                 <include layout="@layout/class_x_syllabus_list" />
+             </LinearLayout>-->
+
+        </com.facebook.shimmer.ShimmerFrameLayout>
+
+
+
 
     </RelativeLayout>
+
 
 
     <com.google.android.material.navigation.NavigationView
