@@ -155,7 +155,7 @@ public class TestYourselfActivity extends AppCompatActivity {
 
     public void startNewActivity(String testName){
         Intent mIntent = new Intent(this,TestYourselfDetailActivity.class);
-        mIntent.putExtra("class", testName);
+        mIntent.putExtra("testName", testName);
         startActivity(mIntent);
     }
     @Override
