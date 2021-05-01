@@ -17,6 +17,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.facebook.shimmer.ShimmerFrameLayout;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -42,6 +43,8 @@ public class ClassXSyllabusList extends AppCompatActivity {
     FirebaseUser user;
     RecyclerView mRecyclerView;
     FirebaseDatabase database;
+
+    private ShimmerFrameLayout mShimmerViewContainer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,6 +55,9 @@ public class ClassXSyllabusList extends AppCompatActivity {
         drawerLayout = findViewById(R.id.drawer);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("SFCC");
+
+        mShimmerViewContainer = findViewById(R.id.shimmer_view_container);
+
 
         toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open, R.string.close);
         drawerLayout.addDrawerListener(toggle);
@@ -149,6 +155,9 @@ public class ClassXSyllabusList extends AppCompatActivity {
         mRecyclerView = findViewById(R.id.recyclerview_classx_syllabus_list);
         mRecyclerView.setHasFixedSize(false);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+      //  mShimmerViewContainer.setVisibility(View.VISIBLE);
+        mShimmerViewContainer.startShimmer();
+        //mRecyclerView.setVisibility(View.INVISIBLE);
         reference_classX_syllabus_list = FirebaseDatabase.getInstance("https://sfcc-29ece-default-rtdb.firebaseio.com/").
                 getReference("course/class_10");
 
@@ -177,9 +186,22 @@ public class ClassXSyllabusList extends AppCompatActivity {
                             }
                         });*/
 
+                        /* mShimmerViewContainer.stopShimmer();
+                         mShimmerViewContainer.setVisibility(View.GONE);*/
+
                     }
                 };
+       // mShimmerViewContainer.setVisibility(View.GONE);
+       // mShimmerViewContainer.stopShimmer();
+      //  mRecyclerView.setVisibility(View.VISIBLE);
         mRecyclerView.setAdapter(firebaseRecyclerAdapter);
+       /*  if(mShimmerViewContainer.isShimmerVisible())
+                        {
+                            mShimmerViewContainer.stopShimmer();
+                            mShimmerViewContainer.setVisibility(View.GONE);
+                        }*/
+
+
     }
 
     @Override
@@ -198,6 +220,17 @@ public class ClassXSyllabusList extends AppCompatActivity {
         toggle.syncState();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mShimmerViewContainer.setVisibility(View.VISIBLE);
+        mShimmerViewContainer.startShimmer();
+    }
 
-
+    @Override
+    protected void onPause() {
+        super.onPause();
+        mShimmerViewContainer.setVisibility(View.INVISIBLE);
+        mShimmerViewContainer.stopShimmer();
+    }
 }
