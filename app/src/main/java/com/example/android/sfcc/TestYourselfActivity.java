@@ -148,7 +148,7 @@ public class TestYourselfActivity extends AppCompatActivity {
         });
 
         class_10_test.setOnClickListener(view -> {
-            startNewActivity("ten");
+            startNewActivity("class_10");
         });
 
     }

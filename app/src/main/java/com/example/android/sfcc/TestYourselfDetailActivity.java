@@ -1,7 +1,10 @@
 package com.example.android.sfcc;
 
-import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.android.sfcc.model.MCQ;
 import com.example.android.sfcc.model.Test;
@@ -11,9 +14,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,7 +38,7 @@ public class TestYourselfDetailActivity extends AppCompatActivity {
     private void loadTestData(String value) {
 
         reference_test = FirebaseDatabase.getInstance("https://sfcc-29ece-default-rtdb.firebaseio.com/").
-                getReference("test/class_10");
+                getReference("test/"+value);
 
         //fill it
 

@@ -222,6 +222,7 @@ public class ClassXChapterWiseContent extends AppCompatActivity {
 
                     index++;
                 }
+
             }
 
             @Override
