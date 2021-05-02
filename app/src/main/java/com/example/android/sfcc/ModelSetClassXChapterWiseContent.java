@@ -17,6 +17,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.facebook.shimmer.ShimmerFrameLayout;
 import com.github.barteksc.pdfviewer.PDFView;
 import com.google.android.exoplayer2.DefaultLoadControl;
 import com.google.android.exoplayer2.ExoPlayerFactory;
@@ -59,7 +60,7 @@ public class ModelSetClassXChapterWiseContent extends AppCompatActivity {
     private String TAG = "ModelSetClassXChapterWiseContent";
     int lastClickedItemPosition;
 
-    private TextView chapter_title,chapter_descp;
+    private TextView chapter_title, chapter_descp;
     private PDFView pdfView;
 
     FirebaseAuth mAuth;
@@ -67,6 +68,8 @@ public class ModelSetClassXChapterWiseContent extends AppCompatActivity {
     FirebaseUser user;
     FirebaseDatabase database;
     DataSnapshot dataSnap;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,6 +85,8 @@ public class ModelSetClassXChapterWiseContent extends AppCompatActivity {
         chapter_title = findViewById(R.id.model_set_class_x_pdf_title);
         chapter_descp = findViewById(R.id.model_set_class_x_pdf_descp);
         pdfView = findViewById(R.id.pdfView);
+
+
 
         toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open, R.string.close);
         drawerLayout.addDrawerListener(toggle);
@@ -178,7 +183,7 @@ public class ModelSetClassXChapterWiseContent extends AppCompatActivity {
         });
         Intent mIntent = getIntent();
         lastClickedItemPosition = mIntent.getIntExtra("CurrentAdapterPosition", 0);
-        Log.i(TAG, "onClick: "+lastClickedItemPosition);
+        Log.i(TAG, "onClick: " + lastClickedItemPosition);
         reference_pdfs = FirebaseDatabase.getInstance("https://sfcc-29ece-default-rtdb.firebaseio.com/").
                 getReference("model_set/class_10");
 
@@ -197,9 +202,10 @@ public class ModelSetClassXChapterWiseContent extends AppCompatActivity {
                         chapter_descp.setText(description);*/
 
 
-                        Log.i(TAG, "onClick: "+chapter_name+ " "+description+" "+pdfUrl);
+                        Log.i(TAG, "onClick: " + chapter_name + " " + description + " " + pdfUrl);
                         //String pdfUrl = dataSnapshots.getValue(String.class);
                         new RetrivedPdffromFirebase().execute(pdfUrl);
+
                     }
 
                     index++;
@@ -227,6 +233,7 @@ public class ModelSetClassXChapterWiseContent extends AppCompatActivity {
             super.onBackPressed();
         }
     }
+
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
@@ -256,7 +263,14 @@ public class ModelSetClassXChapterWiseContent extends AppCompatActivity {
             pdfView.fromStream(inputStream).load();
         }
     }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+    }
 }
+
 
 
 
