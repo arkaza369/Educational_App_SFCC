@@ -5,36 +5,15 @@ import android.os.Bundle;
 
 import com.example.android.sfcc.model.MCQ;
 import com.example.android.sfcc.model.Test;
-import com.google.android.exoplayer2.DefaultLoadControl;
-import com.google.android.exoplayer2.ExoPlayerFactory;
-import com.google.android.exoplayer2.LoadControl;
-import com.google.android.exoplayer2.SimpleExoPlayer;
-import com.google.android.exoplayer2.extractor.DefaultExtractorsFactory;
-import com.google.android.exoplayer2.extractor.ExtractorsFactory;
-import com.google.android.exoplayer2.source.ExtractorMediaSource;
-import com.google.android.exoplayer2.source.MediaSource;
-import com.google.android.exoplayer2.trackselection.AdaptiveTrackSelection;
-import com.google.android.exoplayer2.trackselection.DefaultTrackSelector;
-import com.google.android.exoplayer2.trackselection.TrackSelector;
-import com.google.android.exoplayer2.upstream.BandwidthMeter;
-import com.google.android.exoplayer2.upstream.DefaultBandwidthMeter;
-import com.google.android.exoplayer2.upstream.DefaultHttpDataSourceFactory;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-
 import android.util.Log;
-import android.view.View;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -66,32 +45,45 @@ public class TestYourselfDetailActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshots) {
                 // dataSnap = dataSnapshots;
-                int index = 0;
+                int index = 1;
                 for (DataSnapshot childSnapshot : dataSnapshots.getChildren()) {
-                    //Retrieved data
+                    String number_of_question = childSnapshot.child("/number_of_question").getValue().toString();
+                    int size_of_question = Integer.parseInt(number_of_question);
+
                     String title = childSnapshot.child("/title").getValue().toString();
-                    String answer = childSnapshot.child("/1/answer").getValue().toString();
-                    String options = childSnapshot.child("/1/option").getValue().toString();
-                    String question = childSnapshot.child("/1/question").getValue().toString();
-                    // Log.d(TAG, "onDataChange: "+title+" "+answer+" "+options+" "+question);
+                    for (int i = 1; i <= size_of_question; i++) {
+                        String answer = childSnapshot.child("/" + i + "/answer").getValue().toString();
+                        String options = childSnapshot.child("/" + i + "/option").getValue().toString();
+                        String question = childSnapshot.child("/" + i + "/question").getValue().toString();
+                        Log.d(TAG, "onDataChange: " + number_of_question + " " + title + " " + answer + " " + options + " " + question);
 
-                    //setting values in "tests" list
-                    List<String> options_list = new ArrayList<>();
-                    String[] options_split = options.split("\\|");
-                    for (int i = 0; i < options_split.length; i++) {
-                        //  Log.d(TAG, "onDataChange: "+options_split[i]);
-                        options_list.add(options_split[i]);
+                        List<String> options_list = new ArrayList<>();
+                        String[] options_split = options.split("\\|");
+                        for (int j = 0; j < options_split.length; j++) {
+                            //  Log.d(TAG, "onDataChange: "+options_split[i]);
+                            options_list.add(options_split[j]);
+                        }
+                        // Log.d(TAG, "onDataChange: "+options_list);
+                        mcqes.add(new MCQ(question, answer, options_list));
                     }
-                    // Log.d(TAG, "onDataChange: "+options_list);
-                    mcqes.add(new MCQ(question, answer, options_list));
-                    //retrieving MCQ contents
-                    Log.d(TAG, "onDataChange: mcqs data" + mcqes.get(0).getQuestion() + " " + mcqes.get(0).getAnswer() + mcqes.get(0).getOptions());
 
+
+                    //retrieving MCQ contents
+                    for (int i = 0; i < mcqes.size(); i++) {
+                        Log.d(TAG, "onDataChange: mcqs data retrieval" + mcqes.get(i).getQuestion() + " " + mcqes.get(i).getAnswer()
+                                + mcqes.get(i).getOptions());
+
+                    }
+                    //setting values in "tests" list
                     tests.add(new Test(title, mcqes));
                     //retrieving Tests contents
-                    Log.d(TAG, "onDataChange: tests data " + tests.get(0).getTitle() + " " + tests.get(0).getMcqes().get(0).getQuestion()
-                            + " " + tests.get(0).getMcqes().get(0).getAnswer() + " " + tests.get(0).getMcqes().get(0).getOptions());
-
+                    for (int i = 0; i < tests.size(); i++) {
+                        Log.d(TAG, "onDataChange: tests data " + tests.get(i).getTitle());
+                        for (int j = 0; j < tests.get(i).getMcqes().size(); j++) {
+                            Log.d(TAG, "onDataChange: " + tests.get(i).getMcqes().get(j).getQuestion()
+                                    + " " + tests.get(i).getMcqes().get(j).getAnswer() + " " + tests.get(i).getMcqes().get(j).getOptions());
+                        }
+                    }
                 }
 
 

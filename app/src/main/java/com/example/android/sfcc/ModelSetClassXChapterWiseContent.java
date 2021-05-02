@@ -7,10 +7,12 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -62,6 +64,8 @@ public class ModelSetClassXChapterWiseContent extends AppCompatActivity {
 
     private TextView chapter_title, chapter_descp;
     private PDFView pdfView;
+    private ProgressDialog progress;
+    private Handler progressBarHandler = new Handler();
 
     FirebaseAuth mAuth;
     DatabaseReference reference_header, reference_pdfs, reference;
@@ -204,6 +208,7 @@ public class ModelSetClassXChapterWiseContent extends AppCompatActivity {
 
                         Log.i(TAG, "onClick: " + chapter_name + " " + description + " " + pdfUrl);
                         //String pdfUrl = dataSnapshots.getValue(String.class);
+                        downloadPDF();
                         new RetrivedPdffromFirebase().execute(pdfUrl);
 
                     }
@@ -268,6 +273,54 @@ public class ModelSetClassXChapterWiseContent extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
 
+    }
+    public void downloadPDF(){
+        progress=new ProgressDialog(this);
+        progress.setMessage("Uploading PDF");
+        progress.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+        //progress.setIndeterminate(true);
+        progress.setMax(100);
+        progress.setProgress(0);
+
+        progress.show();
+
+        final int totalProgressTime = 100;
+        final Thread t = new Thread() {
+            int jumpTime = 0;
+            @Override
+            public void run() {
+
+
+                while(jumpTime < totalProgressTime) {
+                    jumpTime += 10;
+                    try {
+                        sleep(200);
+
+                       // progress.setProgress(jumpTime);
+                    } catch (InterruptedException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                    }
+                    progressBarHandler.post(new Runnable() {
+                        public void run() {
+                            progress.setProgress(jumpTime);
+                        }
+                    });
+                }
+                if (jumpTime >= totalProgressTime) {
+                    // sleeping for 1 second after operation completed
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    // close the progress bar dialog
+                    progress.dismiss();
+                }
+
+            }
+        };
+        t.start();
     }
 }
 
