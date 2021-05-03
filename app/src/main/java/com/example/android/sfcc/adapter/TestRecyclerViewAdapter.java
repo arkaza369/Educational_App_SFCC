@@ -34,7 +34,10 @@ public class TestRecyclerViewAdapter extends RecyclerView.Adapter<TestViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull TestViewHolder holder, int position) {
+        holder.testTitle.setText(testData.get(position).getTitle());
+        holder.testCard.setOnClickListener(view -> {
 
+        });
     }
 
     @Override
