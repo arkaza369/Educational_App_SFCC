@@ -2,10 +2,14 @@ package com.example.android.sfcc;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.android.sfcc.adapter.TestRecyclerViewAdapter;
 import com.example.android.sfcc.model.MCQ;
 import com.example.android.sfcc.model.Test;
 import com.google.firebase.auth.FirebaseUser;
@@ -21,18 +25,25 @@ import java.util.List;
 public class TestYourselfDetailActivity extends AppCompatActivity {
     private List<Test> tests = new ArrayList<>();
     DatabaseReference reference_test;
-    FirebaseUser user;
-    FirebaseDatabase database;
+    RecyclerView testRecycler;
+    TestRecyclerViewAdapter adapter;
     private static final String TAG = "TestYourselfDetailActiv";
     private List<MCQ> mcqes = new ArrayList<MCQ>();
+    TextView titleView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test_yourself_detail);
+        titleView = (TextView) findViewById(R.id.title);
         String value = getIntent().getExtras().getString("testName");
         Log.d(TAG, "onCreate: " + value);
         loadTestData(value);
+        titleView.setText(value);
+        testRecycler = findViewById(R.id.test_list);
+        testRecycler.setLayoutManager(new LinearLayoutManager(this));
+        adapter = new TestRecyclerViewAdapter(this, tests);
+        testRecycler.setAdapter(adapter);
     }
 
     private void loadTestData(String value) {
@@ -50,7 +61,6 @@ public class TestYourselfDetailActivity extends AppCompatActivity {
                 for (DataSnapshot childSnapshot : dataSnapshots.getChildren()) {
                     String number_of_question = childSnapshot.child("/number_of_question").getValue().toString();
                     int size_of_question = Integer.parseInt(number_of_question);
-
                     String title = childSnapshot.child("/title").getValue().toString();
                     for (int i = 1; i <= size_of_question; i++) {
                         String answer = childSnapshot.child("/" + i + "/answer").getValue().toString();

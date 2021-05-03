@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Test {
     private String title;
-    private List<MCQ> mcqes= new ArrayList<MCQ>();
+    private List<MCQ> mcqes;
 
     public Test(String title, List<MCQ> mcqes) {
         this.title = title;
