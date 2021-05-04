@@ -38,15 +38,11 @@ public class TestYourselfDetailActivity extends AppCompatActivity {
         titleView = (TextView) findViewById(R.id.title);
         String value = getIntent().getExtras().getString("testName");
         Log.d(TAG, "onCreate: " + value);
-        loadTestData(value);
+        loadTestData(value,this);
         titleView.setText(value);
-        testRecycler = findViewById(R.id.test_list);
-        testRecycler.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new TestRecyclerViewAdapter(this, tests);
-        testRecycler.setAdapter(adapter);
     }
 
-    private void loadTestData(String value) {
+    private void loadTestData(String value, TestYourselfDetailActivity testYourselfDetailActivity) {
 
         reference_test = FirebaseDatabase.getInstance("https://sfcc-29ece-default-rtdb.firebaseio.com/").
                 getReference("test/"+value);
@@ -87,6 +83,10 @@ public class TestYourselfDetailActivity extends AppCompatActivity {
                     }
                     //setting values in "tests" list
                     tests.add(new Test(title, mcqes));
+                    testRecycler = findViewById(R.id.test_list);
+                    testRecycler.setLayoutManager(new LinearLayoutManager(testYourselfDetailActivity));
+                    adapter = new TestRecyclerViewAdapter(testYourselfDetailActivity, tests);
+                    testRecycler.setAdapter(adapter);
                     //retrieving Tests contents
                     for (int i = 0; i < tests.size(); i++) {
                         Log.d(TAG, "onDataChange: tests data " + tests.get(i).getTitle());
