@@ -34,7 +34,7 @@ public class TestYourselfActivity extends AppCompatActivity {
     private NavigationView navigationView;
     private ActionBarDrawerToggle toggle;
     private String TAG = "TestYourselfActivity";
-    private CardView class_8, class_9, class_10, hindi_grammer, eng_grammer;
+    private CardView class_8, class_9, class_10, hindi_grammar, eng_grammar;
     private CardView class_10_test;
     FirebaseAuth mAuth;
     DatabaseReference reference;

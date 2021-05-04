@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.android.sfcc.adapter.TestRecyclerViewAdapter;
 import com.example.android.sfcc.model.MCQ;
 import com.example.android.sfcc.model.Test;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -27,7 +26,7 @@ public class TestYourselfDetailActivity extends AppCompatActivity {
     DatabaseReference reference_test;
     RecyclerView testRecycler;
     TestRecyclerViewAdapter adapter;
-    private static final String TAG = "TestYourselfDetailActive";
+    private static final String TAG = "TestYourselfDetail";
     private List<MCQ> mcqes = new ArrayList<MCQ>();
     TextView titleView;
 
