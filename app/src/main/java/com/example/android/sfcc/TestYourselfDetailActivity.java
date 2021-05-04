@@ -27,7 +27,7 @@ public class TestYourselfDetailActivity extends AppCompatActivity {
     DatabaseReference reference_test;
     RecyclerView testRecycler;
     TestRecyclerViewAdapter adapter;
-    private static final String TAG = "TestYourselfDetailActiv";
+    private static final String TAG = "TestYourselfDetailActive";
     private List<MCQ> mcqes = new ArrayList<MCQ>();
     TextView titleView;
 
