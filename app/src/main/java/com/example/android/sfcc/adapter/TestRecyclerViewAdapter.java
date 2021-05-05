@@ -10,12 +10,13 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.android.sfcc.MainActivity;
+import com.example.android.sfcc.MCQActivity;
 import com.example.android.sfcc.R;
 import com.example.android.sfcc.model.MCQ;
 import com.example.android.sfcc.model.Test;
 import com.example.android.sfcc.viewholder.TestViewHolder;
 
+import java.io.Serializable;
 import java.util.List;
 
 
@@ -46,9 +47,9 @@ public class TestRecyclerViewAdapter extends RecyclerView.Adapter<TestViewHolder
     }
 
     private void startNewActivity(List<MCQ> mcqes) {
-        Intent mIntent = new Intent(context, MainActivity.class);
-        mIntent.putExtra("mcq", mcqes.toString());
-        Log.i("mcq",mcqes.get(0).getQuestion());
+        Intent mIntent = new Intent(context, MCQActivity.class);
+        mIntent.putExtra("MCQ", (Serializable) mcqes);
+        Log.i("MCQ",mcqes.get(0).getQuestion());
         context.startActivity(mIntent);
     }
 

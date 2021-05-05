@@ -1,8 +1,9 @@
 package com.example.android.sfcc.model;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class MCQ {
+public class MCQ implements Serializable {
     private String question;
     private String answer;
     private List<String> options;

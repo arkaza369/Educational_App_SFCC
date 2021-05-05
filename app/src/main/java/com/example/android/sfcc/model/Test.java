@@ -1,9 +1,10 @@
 package com.example.android.sfcc.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Test {
+public class Test implements Serializable {
     private String title;
     private List<MCQ> mcqes;
 

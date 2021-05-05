@@ -13,7 +13,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ModelSetClassXSyllabusList"></activity>
+        <activity android:name=".ModelSetClassXSyllabusList"/>
         <activity android:name=".ModelSetClassXChapterWiseContent" />
         <activity android:name=".ClassXChapterWiseContent" />
         <activity android:name=".ClassXSyllabusList" />
@@ -25,6 +25,7 @@
         <activity android:name=".ModelSetActivity" />
         <activity android:name=".TestYourselfActivity" />
         <activity android:name=".TestYourselfDetailActivity" />
+        <activity android:name=".MCQActivity" />
         <activity android:name=".CoursesActivity" />
         <activity android:name=".MainActivity" />
         <activity android:name=".SignUp" />
