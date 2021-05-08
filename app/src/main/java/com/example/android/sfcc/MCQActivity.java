@@ -20,7 +20,7 @@ public class MCQActivity extends AppCompatActivity {
     private RadioButton option1,option2,option3,option4;
     private TextView question;
     private int count = 0;
-    String answers[] = new String[mcqes.size()];
+    String answers[];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +28,7 @@ public class MCQActivity extends AppCompatActivity {
         setContentView(R.layout.layout_test);
         mcqes= (List<MCQ>) getIntent().getSerializableExtra("MCQ");
         Log.i("MCQ_QUESTION",mcqes.get(0).getQuestion());
+        answers = new String[mcqes.size()];
         prev = findViewById(R.id.prev);
         next = findViewById(R.id.prev);
         options = findViewById(R.id.options);
@@ -42,14 +43,25 @@ public class MCQActivity extends AppCompatActivity {
         option3.setText(mcqes.get(count).getOptions().get(2));
         option4.setText(mcqes.get(count).getOptions().get(3));
         prev.setOnClickListener(view -> {
-
+             if(count>0){
+                 count--;
+             }
         });
         next.setOnClickListener(view -> {
               if(count<mcqes.size()){
                   answers[count]= getCheckedAnswer(options.getCheckedRadioButtonId());
                   count++;
+                  setMcqView(count);
               }
         });
+    }
+
+    private void setMcqView(int count) {
+        question.setText(mcqes.get(count).getQuestion());
+        option1.setText(mcqes.get(count).getOptions().get(0));
+        option2.setText(mcqes.get(count).getOptions().get(1));
+        option3.setText(mcqes.get(count).getOptions().get(2));
+        option4.setText(mcqes.get(count).getOptions().get(3));
     }
 
     private String getCheckedAnswer(int checkedRadioButtonId) {
