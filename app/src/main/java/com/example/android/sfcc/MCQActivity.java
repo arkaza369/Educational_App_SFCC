@@ -30,7 +30,7 @@ public class MCQActivity extends AppCompatActivity {
         Log.i("MCQ_QUESTION",mcqes.get(0).getQuestion());
         answers = new String[mcqes.size()];
         prev = findViewById(R.id.prev);
-        next = findViewById(R.id.prev);
+        next = findViewById(R.id.next);
         options = findViewById(R.id.options);
         question = findViewById(R.id.question);
         option1 = findViewById(R.id.option_1);
