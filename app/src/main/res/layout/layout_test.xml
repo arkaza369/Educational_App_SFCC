@@ -11,16 +11,6 @@
         android:gravity="center"
         android:orientation="vertical">
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Title is loading"
-            android:id="@+id/title"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Description is loading"
-            android:id="@+id/description"/>
-        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="question is goes here"
