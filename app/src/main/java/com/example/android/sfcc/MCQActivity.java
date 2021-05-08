@@ -45,6 +45,15 @@ public class MCQActivity extends AppCompatActivity {
         prev.setOnClickListener(view -> {
              if(count>0){
                  count--;
+                 setMcqView(count);
+                 if(option1.getText() == answers[count])
+                     options.check(R.id.option_1);
+                 if(option2.getText() == answers[count])
+                     options.check(R.id.option_3);
+                 if(option3.getText() == answers[count])
+                     options.check(R.id.option_3);
+                 if(option4.getText() == answers[count])
+                     options.check(R.id.option_4);
              }
         });
         next.setOnClickListener(view -> {
