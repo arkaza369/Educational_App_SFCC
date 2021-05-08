@@ -20,6 +20,8 @@ public class MCQActivity extends AppCompatActivity {
     private RadioButton option1,option2,option3,option4;
     private TextView question;
     private int count = 0;
+    String answers[] = new String[mcqes.size()];
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,7 +45,23 @@ public class MCQActivity extends AppCompatActivity {
 
         });
         next.setOnClickListener(view -> {
-
+              if(count<mcqes.size()){
+                  answers[count]= getCheckedAnswer(options.getCheckedRadioButtonId());
+                  count++;
+              }
         });
+    }
+
+    private String getCheckedAnswer(int checkedRadioButtonId) {
+        String answer = "";
+        if(checkedRadioButtonId == R.id.option_1)
+            answer = (String) option1.getText();
+        if(checkedRadioButtonId == R.id.option_2)
+            answer = (String) option2.getText();
+        if(checkedRadioButtonId == R.id.option_3)
+            answer = (String) option3.getText();
+        if(checkedRadioButtonId == R.id.option_4)
+            answer = (String) option4.getText();
+        return answer;
     }
 }
