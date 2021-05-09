@@ -4,77 +4,93 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/question_layout"
-        android:layout_margin="20dp"
-        android:gravity="center"
+        android:id="@+id/mcq_layout"
         android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/question_layout"
+            android:layout_margin="20dp"
+            android:gravity="center"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="question is goes here"
+                android:id="@+id/question"/>
+            <RadioGroup
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/options">
+
+                <RadioButton
+                    android:id="@+id/option_1"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="  Male"
+                    android:layout_marginTop="10dp"
+                    android:checked="false"
+                    android:textSize="20dp" />
+
+                <RadioButton
+                    android:id="@+id/option_2"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="   Female"
+                    android:layout_marginTop="20dp"
+                    android:checked="false"
+                    android:textSize="20dp" />
+
+                <RadioButton
+                    android:id="@+id/option_3"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="  Male"
+                    android:layout_marginTop="10dp"
+                    android:checked="false"
+                    android:textSize="20dp" />
+
+                <RadioButton
+                    android:id="@+id/option_4"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="   Female"
+                    android:layout_marginTop="20dp"
+                    android:checked="false"
+                    android:textSize="20dp" />
+            </RadioGroup>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_below="@+id/question_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/bottom"
+            android:layout_margin="20dp"
+            android:orientation="horizontal">
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="PREV"
+                android:id="@+id/prev"/>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="180dp"
+                android:text="NEXT"
+                android:id="@+id/next"/>
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:id="@+id/result_layout">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="question is goes here"
-            android:id="@+id/question"/>
-        <RadioGroup
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/options">
-
-            <RadioButton
-                android:id="@+id/option_1"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="  Male"
-                android:layout_marginTop="10dp"
-                android:checked="false"
-                android:textSize="20dp" />
-
-            <RadioButton
-                android:id="@+id/option_2"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="   Female"
-                android:layout_marginTop="20dp"
-                android:checked="false"
-                android:textSize="20dp" />
-
-            <RadioButton
-                android:id="@+id/option_3"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="  Male"
-                android:layout_marginTop="10dp"
-                android:checked="false"
-                android:textSize="20dp" />
-
-            <RadioButton
-                android:id="@+id/option_4"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="   Female"
-                android:layout_marginTop="20dp"
-                android:checked="false"
-                android:textSize="20dp" />
-        </RadioGroup>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_below="@+id/question_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/bottom"
-        android:layout_margin="20dp"
-        android:orientation="horizontal">
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="PREV"
-            android:id="@+id/prev"/>
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="180dp"
-            android:text="NEXT"
-            android:id="@+id/next"/>
-
+            android:id="@+id/result"
+            android:text="result shows here"/>
     </LinearLayout>
 </RelativeLayout>

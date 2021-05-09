@@ -2,7 +2,9 @@ package com.example.android.sfcc;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -18,8 +20,9 @@ public class MCQActivity extends AppCompatActivity {
     private Button prev,next;
     private RadioGroup options;
     private RadioButton option1,option2,option3,option4;
-    private TextView question;
+    private TextView question,result;
     private int count = 0;
+    private LinearLayout mcqLayout,resultLayout;
     String answers[];
 
     @Override
@@ -27,7 +30,7 @@ public class MCQActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_test);
         mcqes= (List<MCQ>) getIntent().getSerializableExtra("MCQ");
-        Log.i("MCQ_QUESTION",mcqes.get(0).getQuestion());
+        Log.i("MCQ_QUESTION", String.valueOf(mcqes.size()));
         answers = new String[mcqes.size()];
         prev = findViewById(R.id.prev);
         next = findViewById(R.id.next);
@@ -37,6 +40,9 @@ public class MCQActivity extends AppCompatActivity {
         option2 = findViewById(R.id.option_2);
         option3 = findViewById(R.id.option_3);
         option4 = findViewById(R.id.option_4);
+        mcqLayout = findViewById(R.id.mcq_layout);
+        resultLayout = findViewById(R.id.result_layout);
+        result = findViewById(R.id.result);
         question.setText(mcqes.get(count).getQuestion());
         option1.setText(mcqes.get(count).getOptions().get(0));
         option2.setText(mcqes.get(count).getOptions().get(1));
@@ -46,23 +52,29 @@ public class MCQActivity extends AppCompatActivity {
              if(count>0){
                  count--;
                  setMcqView(count);
-                 if(option1.getText() == answers[count])
-                     options.check(R.id.option_1);
-                 if(option2.getText() == answers[count])
-                     options.check(R.id.option_3);
-                 if(option3.getText() == answers[count])
-                     options.check(R.id.option_3);
-                 if(option4.getText() == answers[count])
-                     options.check(R.id.option_4);
              }
         });
         next.setOnClickListener(view -> {
-              if(count<mcqes.size()){
+              if(count<mcqes.size()-1){
                   answers[count]= getCheckedAnswer(options.getCheckedRadioButtonId());
                   count++;
                   setMcqView(count);
+              }else{
+                  answers[count]= getCheckedAnswer(options.getCheckedRadioButtonId());
+                  mcqLayout.setVisibility(View.GONE);
+                  resultLayout.setVisibility(View.VISIBLE);
+                  result.setText(getAnswer());
               }
         });
+    }
+
+    private int getAnswer() {
+        int correctAns=0;
+        for(int i=0;i<mcqes.size();i++){
+            if(mcqes.get(i).getAnswer()==answers[i])
+                correctAns++;
+        }
+        return correctAns;
     }
 
     private void setMcqView(int count) {
@@ -71,6 +83,14 @@ public class MCQActivity extends AppCompatActivity {
         option2.setText(mcqes.get(count).getOptions().get(1));
         option3.setText(mcqes.get(count).getOptions().get(2));
         option4.setText(mcqes.get(count).getOptions().get(3));
+        if(option1.getText() == answers[count])
+            options.check(R.id.option_1);
+        if(option2.getText() == answers[count])
+            options.check(R.id.option_3);
+        if(option3.getText() == answers[count])
+            options.check(R.id.option_3);
+        if(option4.getText() == answers[count])
+            options.check(R.id.option_4);
     }
 
     private String getCheckedAnswer(int checkedRadioButtonId) {
