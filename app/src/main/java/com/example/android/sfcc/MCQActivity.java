@@ -78,6 +78,7 @@ public class MCQActivity extends AppCompatActivity {
     }
 
     private void setMcqView(int count) {
+        options.clearCheck();
         question.setText(mcqes.get(count).getQuestion());
         option1.setText(mcqes.get(count).getOptions().get(0));
         option2.setText(mcqes.get(count).getOptions().get(1));
