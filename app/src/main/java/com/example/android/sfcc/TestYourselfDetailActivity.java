@@ -27,7 +27,7 @@ public class TestYourselfDetailActivity extends AppCompatActivity {
     RecyclerView testRecycler;
     TestRecyclerViewAdapter adapter;
     private static final String TAG = "TestYourselfDetail";
-    private List<MCQ> mcqes = new ArrayList<MCQ>();
+
     TextView titleView;
 
     @Override
@@ -54,6 +54,7 @@ public class TestYourselfDetailActivity extends AppCompatActivity {
                 // dataSnap = dataSnapshots;
                 int index = 1;
                 for (DataSnapshot childSnapshot : dataSnapshots.getChildren()) {
+                     List<MCQ> mcqes = new ArrayList<MCQ>();
                     String number_of_question = childSnapshot.child("/number_of_question").getValue().toString();
                     int size_of_question = Integer.parseInt(number_of_question);
                     String title = childSnapshot.child("/title").getValue().toString();
