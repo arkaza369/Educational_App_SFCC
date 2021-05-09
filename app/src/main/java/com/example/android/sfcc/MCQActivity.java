@@ -63,12 +63,12 @@ public class MCQActivity extends AppCompatActivity {
                   answers[count]= getCheckedAnswer(options.getCheckedRadioButtonId());
                   mcqLayout.setVisibility(View.GONE);
                   resultLayout.setVisibility(View.VISIBLE);
-                  result.setText(getAnswer());
+                  result.setText(String.valueOf(getCorrectAnswer()));
               }
         });
     }
 
-    private int getAnswer() {
+    private int getCorrectAnswer() {
         int correctAns=0;
         for(int i=0;i<mcqes.size();i++){
             if(mcqes.get(i).getAnswer()==answers[i])
