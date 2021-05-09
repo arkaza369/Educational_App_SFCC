@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -23,6 +24,7 @@ public class MCQActivity extends AppCompatActivity {
     private TextView question,result;
     private int count = 0;
     private LinearLayout mcqLayout,resultLayout;
+    private ProgressBar progressBar;
     String answers[];
 
     @Override
@@ -43,6 +45,7 @@ public class MCQActivity extends AppCompatActivity {
         mcqLayout = findViewById(R.id.mcq_layout);
         resultLayout = findViewById(R.id.result_layout);
         result = findViewById(R.id.result);
+        progressBar = findViewById(R.id.progress_bar);
         question.setText(mcqes.get(count).getQuestion());
         option1.setText(mcqes.get(count).getOptions().get(0));
         option2.setText(mcqes.get(count).getOptions().get(1));
@@ -63,7 +66,7 @@ public class MCQActivity extends AppCompatActivity {
                   answers[count]= getCheckedAnswer(options.getCheckedRadioButtonId());
                   mcqLayout.setVisibility(View.GONE);
                   resultLayout.setVisibility(View.VISIBLE);
-                  result.setText(String.valueOf(getCorrectAnswer()));
+                  result.setText(String.valueOf(getCorrectAnswer()*100/mcqes.size()));
               }
         });
     }
@@ -71,7 +74,7 @@ public class MCQActivity extends AppCompatActivity {
     private int getCorrectAnswer() {
         int correctAns=0;
         for(int i=0;i<mcqes.size();i++){
-            if(mcqes.get(i).getAnswer()==answers[i])
+            if(mcqes.get(i).getAnswer().equals(answers[i]))
                 correctAns++;
         }
         return correctAns;
@@ -92,6 +95,7 @@ public class MCQActivity extends AppCompatActivity {
             options.check(R.id.option_3);
         if(option4.getText() == answers[count])
             options.check(R.id.option_4);
+        progressBar.setProgress(count*100/mcqes.size());
     }
 
     private String getCheckedAnswer(int checkedRadioButtonId) {
