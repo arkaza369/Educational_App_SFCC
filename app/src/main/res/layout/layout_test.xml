@@ -16,6 +16,20 @@
             android:layout_margin="20dp"
             android:gravity="center"
             android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/end_test"
+                    android:text="End test" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Total Marks: 100"
+                    android:layout_marginLeft="180dp"/>
+            </LinearLayout>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -109,5 +123,10 @@
             android:textSize="25dp"
             android:textStyle="bold"
             android:id="@+id/result"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/go_to_home"
+            android:text="Go to home" />
     </LinearLayout>
 </RelativeLayout>

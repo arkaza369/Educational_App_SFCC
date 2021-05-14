@@ -1,5 +1,6 @@
 package com.example.android.sfcc;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -18,7 +19,7 @@ import java.util.List;
 
 public class MCQActivity extends AppCompatActivity {
     private List<MCQ> mcqes;
-    private Button prev,next;
+    private Button prev,next,end_test,go_to_home;
     private RadioGroup options;
     private RadioButton option1,option2,option3,option4;
     private TextView question,result;
@@ -46,6 +47,8 @@ public class MCQActivity extends AppCompatActivity {
         resultLayout = findViewById(R.id.result_layout);
         result = findViewById(R.id.result);
         progressBar = findViewById(R.id.progress_bar);
+        end_test = findViewById(R.id.end_test);
+        go_to_home = findViewById(R.id.go_to_home);
         question.setText(mcqes.get(count).getQuestion());
         option1.setText(mcqes.get(count).getOptions().get(0));
         option2.setText(mcqes.get(count).getOptions().get(1));
@@ -69,6 +72,18 @@ public class MCQActivity extends AppCompatActivity {
                   result.setText(String.valueOf(getCorrectAnswer()*100/mcqes.size()));
               }
         });
+        end_test.setOnClickListener(view -> {
+            startNewActivity();
+        });
+
+        go_to_home.setOnClickListener(view -> {
+            startNewActivity();
+        });
+    }
+
+    private void startNewActivity() {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
     }
 
     private int getCorrectAnswer() {
