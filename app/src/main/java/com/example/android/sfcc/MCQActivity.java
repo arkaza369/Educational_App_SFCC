@@ -13,8 +13,9 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.android.sfcc.adapter.TestRecyclerViewAdapter;
+import com.example.android.sfcc.adapter.AnswerRecyclerViewAdapter;
 import com.example.android.sfcc.model.MCQ;
 
 import java.util.List;
@@ -28,7 +29,8 @@ public class MCQActivity extends AppCompatActivity {
     private int count = 0;
     private LinearLayout mcqLayout,resultLayout;
     private ProgressBar progressBar;
-    String answers[];
+    private RecyclerView answerRecycler;
+    private String answers[];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +58,7 @@ public class MCQActivity extends AppCompatActivity {
         option2.setText(mcqes.get(count).getOptions().get(1));
         option3.setText(mcqes.get(count).getOptions().get(2));
         option4.setText(mcqes.get(count).getOptions().get(3));
-        answerRecycler = findViewById(R.id.test_list);
+        answerRecycler = findViewById(R.id.answer_recycle);
         prev.setOnClickListener(view -> {
              if(count>0){
                  count--;
@@ -73,9 +75,9 @@ public class MCQActivity extends AppCompatActivity {
                   mcqLayout.setVisibility(View.GONE);
                   resultLayout.setVisibility(View.VISIBLE);
                   result.setText(String.valueOf(getCorrectAnswer()*100/mcqes.size()));
-                  testRecycler.setLayoutManager(new LinearLayoutManager(testYourselfDetailActivity));
-                  adapter = new TestRecyclerViewAdapter(testYourselfDetailActivity, tests);
-                  testRecycler.setAdapter(adapter);
+                  answerRecycler.setLayoutManager(new LinearLayoutManager(this));
+                  AnswerRecyclerViewAdapter adapter = new AnswerRecyclerViewAdapter(this, mcqes);
+                  answerRecycler.setAdapter(adapter);
               }
         });
         end_test.setOnClickListener(view -> {
