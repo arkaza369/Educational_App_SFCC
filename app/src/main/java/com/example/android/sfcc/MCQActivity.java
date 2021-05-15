@@ -12,7 +12,9 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.example.android.sfcc.adapter.TestRecyclerViewAdapter;
 import com.example.android.sfcc.model.MCQ;
 
 import java.util.List;
@@ -54,6 +56,7 @@ public class MCQActivity extends AppCompatActivity {
         option2.setText(mcqes.get(count).getOptions().get(1));
         option3.setText(mcqes.get(count).getOptions().get(2));
         option4.setText(mcqes.get(count).getOptions().get(3));
+        answerRecycler = findViewById(R.id.test_list);
         prev.setOnClickListener(view -> {
              if(count>0){
                  count--;
@@ -70,6 +73,9 @@ public class MCQActivity extends AppCompatActivity {
                   mcqLayout.setVisibility(View.GONE);
                   resultLayout.setVisibility(View.VISIBLE);
                   result.setText(String.valueOf(getCorrectAnswer()*100/mcqes.size()));
+                  testRecycler.setLayoutManager(new LinearLayoutManager(testYourselfDetailActivity));
+                  adapter = new TestRecyclerViewAdapter(testYourselfDetailActivity, tests);
+                  testRecycler.setAdapter(adapter);
               }
         });
         end_test.setOnClickListener(view -> {
