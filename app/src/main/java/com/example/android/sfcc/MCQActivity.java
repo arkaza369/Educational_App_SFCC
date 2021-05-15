@@ -30,6 +30,7 @@ public class MCQActivity extends AppCompatActivity {
     private LinearLayout mcqLayout,resultLayout;
     private ProgressBar progressBar;
     private RecyclerView answerRecycler;
+    private AnswerRecyclerViewAdapter adapter;
     private String answers[];
 
     @Override
@@ -76,7 +77,7 @@ public class MCQActivity extends AppCompatActivity {
                   resultLayout.setVisibility(View.VISIBLE);
                   result.setText(String.valueOf(getCorrectAnswer()*100/mcqes.size()));
                   answerRecycler.setLayoutManager(new LinearLayoutManager(this));
-                  AnswerRecyclerViewAdapter adapter = new AnswerRecyclerViewAdapter(this, mcqes);
+                  adapter = new AnswerRecyclerViewAdapter(this, mcqes);
                   answerRecycler.setAdapter(adapter);
               }
         });
