@@ -208,7 +208,8 @@ public class ClassXChapterWiseContent extends AppCompatActivity {
                             Uri videos= Uri.parse(video);
                             DefaultHttpDataSourceFactory dataSourceFactory=new DefaultHttpDataSourceFactory("class_10");
                             ExtractorsFactory extractorsFactory = new DefaultExtractorsFactory();
-                            MediaSource mediaSource = new ExtractorMediaSource(videos,dataSourceFactory,extractorsFactory,null,null);
+                            MediaSource mediaSource = new ExtractorMediaSource(videos,dataSourceFactory,extractorsFactory,
+                                    null,null);
                             mExoplayerView.setPlayer(exoPlayer);
                             exoPlayer.prepare(mediaSource);
                             exoPlayer.setPlayWhenReady(true);
