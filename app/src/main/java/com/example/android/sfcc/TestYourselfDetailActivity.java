@@ -19,6 +19,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class TestYourselfDetailActivity extends AppCompatActivity {
@@ -27,7 +28,7 @@ public class TestYourselfDetailActivity extends AppCompatActivity {
     RecyclerView testRecycler;
     TestRecyclerViewAdapter adapter;
     private static final String TAG = "TestYourselfDetail";
-
+    private HashMap<String,String> testTitle;
     TextView titleView;
 
     @Override
@@ -35,10 +36,12 @@ public class TestYourselfDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test_yourself_detail);
         titleView = (TextView) findViewById(R.id.title);
+        testTitle = new HashMap<>();
+        testTitle.put("class_10","Class-10 Test");
         String value = getIntent().getExtras().getString("testName");
         Log.d(TAG, "onCreate: " + value);
         loadTestData(value,this);
-        titleView.setText(value);
+        titleView.setText(testTitle.get(value));
     }
 
     private void loadTestData(String value, TestYourselfDetailActivity testYourselfDetailActivity) {

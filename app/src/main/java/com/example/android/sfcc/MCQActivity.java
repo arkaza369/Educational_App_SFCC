@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.android.sfcc.adapter.AnswerRecyclerViewAdapter;
 import com.example.android.sfcc.model.MCQ;
 
+import java.util.HashMap;
 import java.util.List;
 
 public class MCQActivity extends AppCompatActivity {
