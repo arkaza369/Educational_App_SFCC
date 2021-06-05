@@ -26,7 +26,7 @@ public class MCQActivity extends AppCompatActivity {
     private Button prev,next,end_test,go_to_home;
     private RadioGroup options;
     private RadioButton option1,option2,option3,option4;
-    private TextView question,result;
+    private TextView question,result,numberOfQuestion;
     private int count = 0;
     private LinearLayout mcqLayout,resultLayout;
     private ProgressBar progressBar;
@@ -43,6 +43,7 @@ public class MCQActivity extends AppCompatActivity {
         answers = new String[mcqes.size()];
         prev = findViewById(R.id.prev);
         next = findViewById(R.id.next);
+        numberOfQuestion = findViewById(R.id.number_of_question);
         options = findViewById(R.id.options);
         question = findViewById(R.id.question);
         option1 = findViewById(R.id.option_1);
@@ -61,6 +62,7 @@ public class MCQActivity extends AppCompatActivity {
         option3.setText(mcqes.get(count).getOptions().get(2));
         option4.setText(mcqes.get(count).getOptions().get(3));
         answerRecycler = findViewById(R.id.answer_recycle);
+        numberOfQuestion.setText("Total Question: "+mcqes.size());
         prev.setOnClickListener(view -> {
              if(count>0){
                  count--;

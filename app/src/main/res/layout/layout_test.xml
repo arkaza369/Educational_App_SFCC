@@ -16,7 +16,7 @@
             android:layout_margin="20dp"
             android:gravity="center"
             android:orientation="vertical">
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
                 <Button
@@ -24,15 +24,26 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/end_test"
                     android:text="End test" />
-                <TextView
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Total Marks: 100"
-                    android:layout_marginLeft="150dp"/>
-            </LinearLayout>
+                    android:layout_alignParentRight="true"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Total Marks: 100" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/number_of_question"
+                        android:text="number_of_question" />
+                </LinearLayout>
+            </RelativeLayout>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textStyle="bold"
                 android:text="question is goes here"
                 android:id="@+id/question"/>
             <RadioGroup
