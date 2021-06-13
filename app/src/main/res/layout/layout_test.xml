@@ -116,42 +116,47 @@
             android:max="100"
             style="@style/Widget.AppCompat.ProgressBar.Horizontal" />
     </LinearLayout>
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:visibility="gone"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:layout_centerInParent="true"
-        android:id="@+id/result_layout">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="25dp"
-            android:textStyle="bold"
-            android:layout_marginVertical="10dp"
-            android:text="Result:"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="25dp"
-            android:textStyle="bold"
-            android:id="@+id/result"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="25dp"
-            android:textStyle="bold"
-            android:layout_marginVertical="10dp"
-            android:text="Correct Answer:"/>
-        <androidx.recyclerview.widget.RecyclerView
+        android:layout_height="wrap_content">
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/answer_recycle"/>
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/go_to_home"
-            android:text="Go to home" />
-    </LinearLayout>
+            android:visibility="gone"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:layout_centerInParent="true"
+            android:id="@+id/result_layout">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="25dp"
+                android:textStyle="bold"
+                android:layout_marginVertical="10dp"
+                android:text="Result:"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="25dp"
+                android:textStyle="bold"
+                android:id="@+id/result"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="25dp"
+                android:textStyle="bold"
+                android:layout_marginVertical="10dp"
+                android:text="Correct Answer:"/>
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:id="@+id/answer_recycle"/>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/go_to_home"
+                android:text="Go to home" />
+        </LinearLayout>
+    </ScrollView>
 </RelativeLayout>

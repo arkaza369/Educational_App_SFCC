@@ -56,5 +56,4 @@ dependencies {
     implementation 'com.github.barteksc:android-pdf-viewer:2.8.2'
     implementation 'com.facebook.shimmer:shimmer:0.1.0@aar'
     implementation 'com.facebook.shimmer:shimmer:0.5.0'
-
 }
