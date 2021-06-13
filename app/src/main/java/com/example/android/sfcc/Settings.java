@@ -7,6 +7,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -74,30 +75,39 @@ public class Settings extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
 
         String id = mAuth.getCurrentUser().getUid();
-        reference = FirebaseDatabase.getInstance("https://sfcc-29ece-default-rtdb.firebaseio.com/").
-                getReference();
+        reference = FirebaseDatabase.getInstance("https://sfcc-29ece-default-rtdb.firebaseio.com/").getReference("users/"+id);
+               // getReference();
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for(DataSnapshot datas: dataSnapshot.getChildren()){
-                    String keys=datas.getKey();
-                    user = mAuth.getCurrentUser();
-                    String uid = user.getUid();
-                    String userName=datas.child(uid+"/fullName").getValue().toString();
-                    String phone=datas.child(uid+"/phoneNo").getValue().toString();
-                    String email=datas.child(uid+"/email").getValue().toString();
-                    if (datas.hasChild(uid+"/image"))
-                    {
-                        String image = datas.child(uid+"/image").getValue().toString();
+                for(DataSnapshot datas: dataSnapshot.getChildren()) {
+                    String keys = datas.getKey();
+                    //user = mAuth.getCurrentUser();
+                    //String uid = user.getUid();
+                    String userName = "", phone="", email="";
+                    //     if(datas.hasChild("fullName")) {
+                    Log.d(TAG, "onDataChange: " + datas);
+                    if (datas.getKey().equals("fullName")) {
+                        userName = datas.getValue().toString();
+                        user_name.setText(userName);
+                    }
+
+                    if (datas.getKey().equals("phoneNo")) {
+                        phone = datas.getValue().toString();
+                        user_phone_no.setText(phone);
+                    }
+                    if (datas.getKey().equals("email")) {
+                        email = datas.getValue().toString();
+                        user_email_id.setText(email);
+                    }
+
+                    if (datas.getKey().equals("image")) {
+                        String image = datas.getValue().toString();
                         Picasso.get().load(image).into(userProfilePic);
                     }
-                    user_name.setText(userName);
-                    user_phone_no.setText(phone);
-                    user_email_id.setText(email);
-
                 }
             }
-
+//
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 

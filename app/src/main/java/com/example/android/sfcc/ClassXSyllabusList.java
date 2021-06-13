@@ -120,7 +120,7 @@ public class ClassXSyllabusList extends AppCompatActivity {
         // startVideo(startChapter);
         String id = mAuth.getCurrentUser().getUid();
         reference_header = FirebaseDatabase.getInstance("https://sfcc-29ece-default-rtdb.firebaseio.com/").
-                getReference("users");
+                getReference("users/"+id);
         reference = FirebaseDatabase.getInstance("https://sfcc-29ece-default-rtdb.firebaseio.com/").
                 getReference();
 
@@ -128,19 +128,19 @@ public class ClassXSyllabusList extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot datas : dataSnapshot.getChildren()) {
-                    String keys = datas.getKey();
-                    user = mAuth.getCurrentUser();
-                    String uid = user.getUid();
-                    String user_name = datas.child("/username").getValue().toString();
                     View view = navigationView.getHeaderView(0);
-                    TextView username = view.findViewById(R.id.name);
-                    username.setText("Welcome " + user_name);
-                    CircularImageView userProfilePic = view.findViewById(R.id.imageView);
-                    if (datas.hasChild("/image")) {
-                        String image = datas.child("/image").getValue().toString();
-                        Picasso.get().load(image).into(userProfilePic);
+                    if (datas.getKey().equals("username")) {
+
+                        String user_name = datas.getValue().toString();
+                        TextView username = view.findViewById(R.id.name);
+                        username.setText("Welcome " + user_name);
                     }
 
+                    CircularImageView userProfilePic = view.findViewById(R.id.imageView);
+                    if (datas.getKey().equals( "image")) {
+                        String image = datas.getValue().toString();
+                        Picasso.get().load(image).into(userProfilePic);
+                    }
                 }
             }
 
