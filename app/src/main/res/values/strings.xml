@@ -40,6 +40,23 @@
     <string name="save_btn">Save</string>
     <string name="class_x_chaper_title">Chapter Title</string>
     <string name="class_x_chaper_descp">Chapter Description</string>
+    <string name="about_babusaheb_sirjee">I have experience of more than 30 years of teaching brilliant students like you.
+        I am going to teach Maths in-depth for class tenth according to the new pattern. I will give my best to clear the concepts, all your doubts and make you a superstar in your academics. Feel free to ask your doubts.
+        let us enjoy these tutorials together.
+    </string>
+    <string name="about_contact_us_instagram">
+         https://www.instagram.com/babusahebsirjee
+    </string>
+    <string name="about_contact_us_facebook">
+        https://www.facebook.com/babusaheb.sirjee
+    </string>
+    <string name="about_contact_us_youtube">
+         https://www.youtube.com/c/StudentFriendsCoachingCentre/featured
+    </string>
+
+    <string name="about_contact_us_email">babhusahebsirjee1966@gmail.com</string>
+    <string name="about_contact_us_number">Phone no:  9801466755</string>
+
     <!-- <string name="logo_descp">Student's Friend's Coaching Centre</string> -->
 
 </resources>

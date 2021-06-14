@@ -53,17 +53,17 @@ public class CoursesActivity extends AppCompatActivity implements View.OnClickLi
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
 
-        class_8 = findViewById(R.id.class_8);
-        class_9 = findViewById(R.id.class_9);
+       /* class_8 = findViewById(R.id.class_8);
+        class_9 = findViewById(R.id.class_9);*/
         class_10 = findViewById(R.id.class_10);
-        hindi_grammer = findViewById(R.id.hindi_grammer);
-        eng_grammer = findViewById(R.id.eng_grammer);
+      /*  hindi_grammer = findViewById(R.id.hindi_grammer);
+        eng_grammer = findViewById(R.id.eng_grammer);*/
 
-        class_8.setOnClickListener(this);
-        class_9.setOnClickListener(this);
+        /*class_8.setOnClickListener(this);
+        class_9.setOnClickListener(this);*/
         class_10.setOnClickListener(this);
-        hindi_grammer.setOnClickListener(this);
-        eng_grammer.setOnClickListener(this);
+        /*hindi_grammer.setOnClickListener(this);
+        eng_grammer.setOnClickListener(this);*/
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -103,8 +103,8 @@ public class CoursesActivity extends AppCompatActivity implements View.OnClickLi
                         startActivity(intent);
                         break;
                     case R.id.contact_us:
-                        Toast.makeText(CoursesActivity.this, "Contact us", Toast.LENGTH_SHORT).show();
-                        Log.d(TAG, "onNavigationItemSelected: Contact us");
+                        intent = new Intent(getApplicationContext(), TutorsActivity.class);
+                        startActivity(intent);
                         break;
                     case R.id.model_set:
                         intent = new Intent(getApplicationContext(), ModelSetActivity.class);
@@ -178,27 +178,27 @@ public class CoursesActivity extends AppCompatActivity implements View.OnClickLi
     public void onClick(View v) {
         Intent intent;
         switch (v.getId()) {
-            case R.id.class_8:
+          /*  case R.id.class_8:
                 Toast.makeText(getBaseContext(), "Class Eight", Toast.LENGTH_SHORT).show();
                 Log.d(TAG, "onClick: class 8");
                 break;
             case R.id.class_9:
                 Toast.makeText(CoursesActivity.this, "Class Nine", Toast.LENGTH_SHORT).show();
                 Log.d(TAG, "onClick: class 9");
-                break;
+                break;*/
             case R.id.class_10:
                 Log.d(TAG, "onClick: class 10");
                 intent = new Intent(this, ClassXSyllabusList.class);
                 startActivity(intent);
                 break;
-            case R.id.hindi_grammer:
+           /* case R.id.hindi_grammer:
                 Log.d(TAG, "onClick: hindi_grammer");
                 Toast.makeText(CoursesActivity.this, "Hindi Grammer", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.eng_grammer:
                 Log.d(TAG, "onClick: eng_grammer");
                 Toast.makeText(CoursesActivity.this, "English Grammer", Toast.LENGTH_SHORT).show();
-                break;
+                break;*/
             default:
                 break;
         }

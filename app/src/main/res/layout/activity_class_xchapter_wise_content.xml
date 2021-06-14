@@ -62,7 +62,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/video_title_chapterwise"
-                        android:textSize="20sp"
+                        android:textSize="25sp"
                         android:textStyle="bold"
                         android:textColor="@color/white_color"
                         android:background="@color/black_text_color"
@@ -83,10 +83,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/video_descp_chapterwise"
-                        android:textSize="15sp"
+                        android:textSize="20sp"
                         android:textStyle="bold"
                         android:paddingTop="10dp"
-                        android:textColor="@color/login_button_background"
+                        android:textColor="@color/black_text_color"
                         android:background="@color/background_layout"
                         android:text="@string/class_x_chaper_descp"/>
 

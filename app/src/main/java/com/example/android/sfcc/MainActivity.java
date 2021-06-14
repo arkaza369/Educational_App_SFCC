@@ -111,8 +111,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         startActivity(intent);
                         break;
                     case R.id.contact_us:
-                        Toast.makeText(MainActivity.this, "Contact us", Toast.LENGTH_SHORT).show();
-                        Log.d(TAG, "onNavigationItemSelected: Contact us");
+                        intent = new Intent(getApplicationContext(), TutorsActivity.class);
+                        startActivity(intent);
                         break;
                     case R.id.model_set:
                         //Toast.makeText(MainActivity.this, "Model Sets", Toast.LENGTH_SHORT).show();

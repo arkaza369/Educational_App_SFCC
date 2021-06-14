@@ -92,8 +92,8 @@ public class TutorsActivity extends AppCompatActivity {
                         startActivity(intent);
                         break;
                     case R.id.contact_us:
-                        Toast.makeText(TutorsActivity.this, "Contact us", Toast.LENGTH_SHORT).show();
-                        Log.d(TAG, "onNavigationItemSelected: Contact us");
+                        intent = new Intent(getApplicationContext(), TutorsActivity.class);
+                        startActivity(intent);
                         break;
                     case R.id.model_set:
                         intent = new Intent(getApplicationContext(), ModelSetActivity.class);
@@ -157,9 +157,9 @@ public class TutorsActivity extends AppCompatActivity {
         } else {
             super.onBackPressed();
         }
-
         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
         startActivity(intent);
 
     }
+
 }

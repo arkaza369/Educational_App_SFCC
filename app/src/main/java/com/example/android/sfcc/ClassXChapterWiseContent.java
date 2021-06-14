@@ -124,8 +124,8 @@ public class ClassXChapterWiseContent extends AppCompatActivity {
                         startActivity(intent);
                         break;
                     case R.id.contact_us:
-                        Toast.makeText(ClassXChapterWiseContent.this, "Contact us", Toast.LENGTH_SHORT).show();
-                        Log.d(TAG, "onNavigationItemSelected: Contact us");
+                        intent = new Intent(getApplicationContext(), TutorsActivity.class);
+                        startActivity(intent);
                         break;
                     case R.id.model_set:
                         intent = new Intent(getApplicationContext(), ModelSetActivity.class);
