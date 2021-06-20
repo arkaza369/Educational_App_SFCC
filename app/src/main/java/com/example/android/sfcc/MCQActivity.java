@@ -78,7 +78,7 @@ public class MCQActivity extends AppCompatActivity {
                   answers[count]= getCheckedAnswer(options.getCheckedRadioButtonId());
                   mcqLayout.setVisibility(View.GONE);
                   resultLayout.setVisibility(View.VISIBLE);
-                  result.setText(String.valueOf(getCorrectAnswer()*100/mcqes.size()));
+                  result.setText("Marks: "+String.valueOf(getCorrectAnswer()*100/mcqes.size()));
                   answerRecycler.setLayoutManager(new LinearLayoutManager(this));
                   adapter = new AnswerRecyclerViewAdapter(this, mcqes);
                   answerRecycler.setAdapter(adapter);
