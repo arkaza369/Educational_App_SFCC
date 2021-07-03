@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.android.sfcc.adapter.TestRecyclerViewAdapter;
 import com.example.android.sfcc.model.MCQ;
 import com.example.android.sfcc.model.Test;
+import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -30,6 +31,7 @@ public class TestYourselfDetailActivity extends AppCompatActivity {
     private static final String TAG = "TestYourselfDetail";
     private HashMap<String,String> testTitle;
     TextView titleView;
+    ShimmerFrameLayout container;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +44,7 @@ public class TestYourselfDetailActivity extends AppCompatActivity {
         Log.d(TAG, "onCreate: " + value);
         loadTestData(value,this);
         titleView.setText(testTitle.get(value));
+        container = (ShimmerFrameLayout) findViewById(R.id.shimmer_view_container);
     }
 
     private void loadTestData(String value, TestYourselfDetailActivity testYourselfDetailActivity) {
@@ -98,6 +101,7 @@ public class TestYourselfDetailActivity extends AppCompatActivity {
                                     + " " + tests.get(i).getMcqes().get(j).getAnswer() + " " + tests.get(i).getMcqes().get(j).getOptions());
                         }
                     }
+                    container.hideShimmer();
                 }
 
 
