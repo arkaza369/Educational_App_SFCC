@@ -9,12 +9,17 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
+import android.graphics.PixelFormat;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,6 +41,10 @@ import com.google.android.exoplayer2.upstream.BandwidthMeter;
 import com.google.android.exoplayer2.upstream.DefaultBandwidthMeter;
 import com.google.android.exoplayer2.upstream.DefaultHttpDataSourceFactory;
 import com.google.android.material.navigation.NavigationView;
+import com.google.android.youtube.player.YouTubeBaseActivity;
+import com.google.android.youtube.player.YouTubeInitializationResult;
+import com.google.android.youtube.player.YouTubePlayer;
+import com.google.android.youtube.player.YouTubePlayerView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -46,7 +55,9 @@ import com.google.firebase.database.ValueEventListener;
 import com.mikhaellopez.circularimageview.CircularImageView;
 import com.squareup.picasso.Picasso;
 
-public class ClassXChapterWiseContent extends AppCompatActivity {
+import static com.google.android.youtube.player.YouTubePlayer.FULLSCREEN_FLAG_CONTROL_SYSTEM_UI;
+
+public class ClassXChapterWiseContent extends YouTubeBaseActivity {
 
     private Toolbar toolbar;
     private DrawerLayout drawerLayout;
@@ -56,8 +67,12 @@ public class ClassXChapterWiseContent extends AppCompatActivity {
     int lastClickedItemPosition;
 
     private TextView chapter_title,chapter_descp;
-    SimpleExoPlayer exoPlayer;
-    private PlayerView mExoplayerView;
+    /*SimpleExoPlayer exoPlayer;
+    private PlayerView mExoplayerView;*/
+    YouTubePlayerView youTubePlayerView;
+    YouTubePlayer.OnInitializedListener onInitializedListener;
+
+    ShimmerFrameLayout container;
 
     FirebaseAuth mAuth;
     DatabaseReference reference_header, reference_videos, reference;
@@ -73,17 +88,20 @@ public class ClassXChapterWiseContent extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_class_xchapter_wise_content);
+
         toolbar = findViewById(R.id.toolbar);
         navigationView = findViewById(R.id.navigationView);
         drawerLayout = findViewById(R.id.drawer);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("SFCC");
+       /* setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("SFCC");*/
 
 
 
         chapter_title = findViewById(R.id.video_title_chapterwise);
         chapter_descp = findViewById(R.id.video_descp_chapterwise);
-        mExoplayerView = findViewById(R.id.exoplayer_view_chapterwise);
+       // mExoplayerView = findViewById(R.id.exoplayer_view_chapterwise);
+        container = (ShimmerFrameLayout) findViewById(R.id.shimmer_view_container_class_10);
+        youTubePlayerView = findViewById(R.id.youtube_player_view_chapterwise);
 
 
         toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open, R.string.close);
@@ -201,7 +219,11 @@ public class ClassXChapterWiseContent extends AppCompatActivity {
                         String video = childSnapshot.child("/video").getValue().toString();
                         chapter_title.setText(chapter_name);
                         chapter_descp.setText(description);
-                        try{
+
+                        playVideo(video);
+                        youTubePlayerView.initialize("AIzaSyBnE2yPlBEx5zGIVExrlj26W8enIDuJ3_0",onInitializedListener);
+
+                       /* try{
                             BandwidthMeter bandwidthMeter = new DefaultBandwidthMeter.Builder(getApplicationContext()).build();
                             TrackSelector trackSelector = new DefaultTrackSelector(new AdaptiveTrackSelection.Factory(bandwidthMeter));
                             LoadControl loadControl = new DefaultLoadControl();
@@ -217,13 +239,17 @@ public class ClassXChapterWiseContent extends AppCompatActivity {
 
                         }catch (Exception e){
                             Log.e(TAG, "exoPlayerError: "+ e.toString());
-                        }
+                        }*/
+
 
                         Log.i(TAG, "onClick: "+chapter_name+ " "+description);
+
+                        container.hideShimmer();
                     }
 
                     index++;
                 }
+
 
             }
 
@@ -255,11 +281,28 @@ public class ClassXChapterWiseContent extends AppCompatActivity {
     public void onPause() {
         super.onPause();
 
-        exoPlayer.setPlayWhenReady(false);
+      //  exoPlayer.setPlayWhenReady(false);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
     }
+
+    public void playVideo(String url){
+        onInitializedListener = new YouTubePlayer.OnInitializedListener() {
+            @Override
+            public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer youTubePlayer, boolean b) {
+
+                youTubePlayer.loadVideo(url);
+
+            }
+
+            @Override
+            public void onInitializationFailure(YouTubePlayer.Provider provider, YouTubeInitializationResult youTubeInitializationResult) {
+
+            }
+        };
+    }
+
 }
