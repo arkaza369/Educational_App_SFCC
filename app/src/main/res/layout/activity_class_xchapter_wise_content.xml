@@ -9,6 +9,97 @@
     tools:context=".ClassXChapterWiseContent"
     tools:openDrawer="start">
 
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/shimmer_view_container_class_10"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:shimmer_auto_start="true">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_gravity="center">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:orientation="vertical"
+                app:cardBackgroundColor="@color/white_color"
+                app:cardCornerRadius="2dp"
+                app:cardElevation="2dp"
+                app:cardUseCompatPadding="true"
+                app:contentPadding="2dp">
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorPrimary"
+                    android:paddingBottom="2dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/video_title_chapterwise"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/black_text_color"
+                            android:text="@string/class_x_chaper_title"
+                            android:textColor="@color/white_color"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+<!--
+                        <com.google.android.exoplayer2.ui.PlayerView
+                            android:id="@+id/exoplayer_view_chapterwise"
+                            android:layout_width="match_parent"
+                            android:layout_height="300dp"
+                            android:layout_gravity="center"
+                            android:background="@color/black_text_color"
+                            android:padding="10dp"
+                            app:resize_mode="fill" />-->
+                        <com.google.android.youtube.player.YouTubePlayerView
+                            android:id="@+id/youtube_player_view_chapterwise"
+                            android:layout_width="fill_parent"
+                            android:layout_height="300dp"
+                            android:layout_gravity="center"
+                            android:background="@color/black_text_color"
+                            android:padding="10dp"
+                            app:resize_mode="fill"
+                            />
+
+
+                        <TextView
+                            android:id="@+id/video_descp_chapterwise"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/background_layout"
+                            android:paddingTop="10dp"
+                            android:text="@string/class_x_chaper_descp"
+                            android:textColor="@color/black_text_color"
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                </FrameLayout>
+
+            </androidx.cardview.widget.CardView>
+
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+        </RelativeLayout>
+
+    </com.facebook.shimmer.ShimmerFrameLayout>
+
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -35,68 +126,6 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center">
-        <androidx.cardview.widget.CardView
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            app:cardCornerRadius="2dp"
-            app:cardBackgroundColor="@color/white_color"
-            app:cardElevation="2dp"
-            app:contentPadding="2dp"
-            app:cardUseCompatPadding="true">
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingBottom="2dp"
-                android:background="@color/colorPrimary">
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/video_title_chapterwise"
-                        android:textSize="25sp"
-                        android:textStyle="bold"
-                        android:textColor="@color/white_color"
-                        android:background="@color/black_text_color"
-                        android:text="@string/class_x_chaper_title"/>
-
-
-                    <com.google.android.exoplayer2.ui.PlayerView
-                        android:padding="10dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="200dp"
-                        android:id="@+id/exoplayer_view_chapterwise"
-                        android:background="@color/black_text_color"
-                        app:resize_mode="fill"
-                        android:layout_gravity="center"/>
-
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/video_descp_chapterwise"
-                        android:textSize="20sp"
-                        android:textStyle="bold"
-                        android:paddingTop="10dp"
-                        android:textColor="@color/black_text_color"
-                        android:background="@color/background_layout"
-                        android:text="@string/class_x_chaper_descp"/>
-
-                </LinearLayout>
-
-            </FrameLayout>
-
-        </androidx.cardview.widget.CardView>
-
-    </RelativeLayout>
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/navigationView"
