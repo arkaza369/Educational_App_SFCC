@@ -1,45 +1,19 @@
 package com.example.android.sfcc;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-import android.content.Context;
 import android.content.Intent;
-import android.content.pm.ActivityInfo;
-import android.graphics.PixelFormat;
-import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.facebook.shimmer.ShimmerFrameLayout;
-import com.firebase.ui.database.FirebaseRecyclerAdapter;
-import com.google.android.exoplayer2.DefaultLoadControl;
-import com.google.android.exoplayer2.ExoPlayerFactory;
-import com.google.android.exoplayer2.LoadControl;
-import com.google.android.exoplayer2.SimpleExoPlayer;
-import com.google.android.exoplayer2.extractor.DefaultExtractorsFactory;
-import com.google.android.exoplayer2.extractor.ExtractorsFactory;
-import com.google.android.exoplayer2.source.ExtractorMediaSource;
-import com.google.android.exoplayer2.source.MediaSource;
-import com.google.android.exoplayer2.trackselection.AdaptiveTrackSelection;
-import com.google.android.exoplayer2.trackselection.DefaultTrackSelector;
-import com.google.android.exoplayer2.trackselection.TrackSelector;
-import com.google.android.exoplayer2.ui.PlayerView;
-import com.google.android.exoplayer2.upstream.BandwidthMeter;
-import com.google.android.exoplayer2.upstream.DefaultBandwidthMeter;
-import com.google.android.exoplayer2.upstream.DefaultHttpDataSourceFactory;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.youtube.player.YouTubeBaseActivity;
 import com.google.android.youtube.player.YouTubeInitializationResult;
@@ -55,13 +29,11 @@ import com.google.firebase.database.ValueEventListener;
 import com.mikhaellopez.circularimageview.CircularImageView;
 import com.squareup.picasso.Picasso;
 
-import static com.google.android.youtube.player.YouTubePlayer.FULLSCREEN_FLAG_CONTROL_SYSTEM_UI;
-
 public class ClassXChapterWiseContent extends YouTubeBaseActivity {
 
     private Toolbar toolbar;
-    private DrawerLayout drawerLayout;
-    private NavigationView navigationView;
+//    private DrawerLayout drawerLayout;
+//    private NavigationView navigationView;
     private ActionBarDrawerToggle toggle;
     private String TAG = "ClassXChapterWiseContent";
     int lastClickedItemPosition;
@@ -72,10 +44,11 @@ public class ClassXChapterWiseContent extends YouTubeBaseActivity {
     YouTubePlayerView youTubePlayerView;
     YouTubePlayer.OnInitializedListener onInitializedListener;
 
-    ShimmerFrameLayout container;
+//    ShimmerFrameLayout container;
 
     FirebaseAuth mAuth;
-    DatabaseReference reference_header, reference_videos, reference;
+    DatabaseReference reference_videos, reference;
+    //DatabaseReference reference_header;
     FirebaseUser user;
     FirebaseDatabase database;
     DataSnapshot dataSnap;
@@ -90,8 +63,8 @@ public class ClassXChapterWiseContent extends YouTubeBaseActivity {
         setContentView(R.layout.activity_class_xchapter_wise_content);
 
         toolbar = findViewById(R.id.toolbar);
-        navigationView = findViewById(R.id.navigationView);
-        drawerLayout = findViewById(R.id.drawer);
+//        navigationView = findViewById(R.id.navigationView);
+//        drawerLayout = findViewById(R.id.drawer);
        /* setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("SFCC");*/
 
@@ -100,104 +73,104 @@ public class ClassXChapterWiseContent extends YouTubeBaseActivity {
         chapter_title = findViewById(R.id.video_title_chapterwise);
         chapter_descp = findViewById(R.id.video_descp_chapterwise);
        // mExoplayerView = findViewById(R.id.exoplayer_view_chapterwise);
-        container = (ShimmerFrameLayout) findViewById(R.id.shimmer_view_container_class_10);
+       // container = (ShimmerFrameLayout) findViewById(R.id.shimmer_view_container_class_10);
         youTubePlayerView = findViewById(R.id.youtube_player_view_chapterwise);
 
 
-        toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open, R.string.close);
-        drawerLayout.addDrawerListener(toggle);
-        toggle.syncState();
+//        toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open, R.string.close);
+//        drawerLayout.addDrawerListener(toggle);
+//        toggle.syncState();
         mAuth = FirebaseAuth.getInstance();
-        navigationView.setItemIconTintList(null);
+ //       navigationView.setItemIconTintList(null);
 
-        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-
-                drawerLayout.closeDrawer(GravityCompat.START);
-                Intent intent;
-                switch (item.getItemId()) {
-                    case R.id.home:
-                        intent = new Intent(getApplicationContext(), MainActivity.class);
-                        startActivity(intent);
-                        Log.d(TAG, "onNavigationItemSelected: home");
-                        break;
-                    case R.id.courses:
-                        intent = new Intent(getApplicationContext(), CoursesActivity.class);
-                        startActivity(intent);
-                        Log.d(TAG, "onNavigationItemSelected: Courses");
-                        break;
-                    case R.id.tutors:
-                        intent = new Intent(getApplicationContext(), TutorsActivity.class);
-                        startActivity(intent);
-                        Log.d(TAG, "onNavigationItemSelected: Tutors");
-                        break;
-                    case R.id.test_yourself:
-                        intent = new Intent(getApplicationContext(), TestYourselfActivity.class);
-                        startActivity(intent);
-                        Log.d(TAG, "onNavigationItemSelected: Test Yourself");
-                        break;
-                    case R.id.settings:
-                        intent = new Intent(getApplicationContext(), Settings.class);
-                        startActivity(intent);
-                        break;
-                    case R.id.contact_us:
-                        intent = new Intent(getApplicationContext(), TutorsActivity.class);
-                        startActivity(intent);
-                        break;
-                    case R.id.model_set:
-                        intent = new Intent(getApplicationContext(), ModelSetActivity.class);
-                        startActivity(intent);
-                        Log.d(TAG, "onNavigationItemSelected: Model Sets");
-                        break;
-                    case R.id.logout:
-                        mAuth.signOut();
-                        intent = new Intent(getApplicationContext(), Login.class);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                        startActivity(intent);
-
-                        break;
-                    default:
-                        break;
-                }
-                return true;
-            }
-        });
+//        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+//            @Override
+//            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+//
+//                drawerLayout.closeDrawer(GravityCompat.START);
+//                Intent intent;
+//                switch (item.getItemId()) {
+//                    case R.id.home:
+//                        intent = new Intent(getApplicationContext(), MainActivity.class);
+//                        startActivity(intent);
+//                        Log.d(TAG, "onNavigationItemSelected: home");
+//                        break;
+//                    case R.id.courses:
+//                        intent = new Intent(getApplicationContext(), CoursesActivity.class);
+//                        startActivity(intent);
+//                        Log.d(TAG, "onNavigationItemSelected: Courses");
+//                        break;
+//                    case R.id.tutors:
+//                        intent = new Intent(getApplicationContext(), TutorsActivity.class);
+//                        startActivity(intent);
+//                        Log.d(TAG, "onNavigationItemSelected: Tutors");
+//                        break;
+//                    case R.id.test_yourself:
+//                        intent = new Intent(getApplicationContext(), TestYourselfActivity.class);
+//                        startActivity(intent);
+//                        Log.d(TAG, "onNavigationItemSelected: Test Yourself");
+//                        break;
+//                    case R.id.settings:
+//                        intent = new Intent(getApplicationContext(), Settings.class);
+//                        startActivity(intent);
+//                        break;
+//                    case R.id.contact_us:
+//                        intent = new Intent(getApplicationContext(), TutorsActivity.class);
+//                        startActivity(intent);
+//                        break;
+//                    case R.id.model_set:
+//                        intent = new Intent(getApplicationContext(), ModelSetActivity.class);
+//                        startActivity(intent);
+//                        Log.d(TAG, "onNavigationItemSelected: Model Sets");
+//                        break;
+//                    case R.id.logout:
+//                        mAuth.signOut();
+//                        intent = new Intent(getApplicationContext(), Login.class);
+//                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+//                        startActivity(intent);
+//
+//                        break;
+//                    default:
+//                        break;
+//                }
+//                return true;
+//            }
+//        });
 
         //To access nav_header views i.e. username
         // startVideo(startChapter);
         String id = mAuth.getCurrentUser().getUid();
-        reference_header = FirebaseDatabase.getInstance("https://sfcc-29ece-default-rtdb.firebaseio.com/").
-                getReference("users/"+id);
+//        reference_header = FirebaseDatabase.getInstance("https://sfcc-29ece-default-rtdb.firebaseio.com/").
+//                getReference("users/"+id);
         reference = FirebaseDatabase.getInstance("https://sfcc-29ece-default-rtdb.firebaseio.com/").
                 getReference();
 
-        reference_header.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot datas : dataSnapshot.getChildren()) {
-                    View view = navigationView.getHeaderView(0);
-                    if (datas.getKey().equals("username")) {
+//        reference_header.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                for (DataSnapshot datas : dataSnapshot.getChildren()) {
+//                    View view = navigationView.getHeaderView(0);
+//                    if (datas.getKey().equals("username")) {
+//
+//                        String user_name = datas.getValue().toString();
+//                        TextView username = view.findViewById(R.id.name);
+//                        username.setText("Welcome " + user_name);
+//                    }
+//
+//                    CircularImageView userProfilePic = view.findViewById(R.id.imageView);
+//                    if (datas.getKey().equals( "image")) {
+//                        String image = datas.getValue().toString();
+//                        Picasso.get().load(image).into(userProfilePic);
+//                    }
+//
+//                }
+//            }
 
-                        String user_name = datas.getValue().toString();
-                        TextView username = view.findViewById(R.id.name);
-                        username.setText("Welcome " + user_name);
-                    }
-
-                    CircularImageView userProfilePic = view.findViewById(R.id.imageView);
-                    if (datas.getKey().equals( "image")) {
-                        String image = datas.getValue().toString();
-                        Picasso.get().load(image).into(userProfilePic);
-                    }
-
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError databaseError) {
+//
+//            }
+//        });
 
 
         Intent mIntent = getIntent();
@@ -244,7 +217,7 @@ public class ClassXChapterWiseContent extends YouTubeBaseActivity {
 
                         Log.i(TAG, "onClick: "+chapter_name+ " "+description);
 
-                        container.hideShimmer();
+                        //container.hideShimmer();
                     }
 
                     index++;
@@ -264,18 +237,18 @@ public class ClassXChapterWiseContent extends YouTubeBaseActivity {
         super.onStart();
     }
 
-    @Override
-    public void onBackPressed() {
-        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
-            drawerLayout.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
-        }
-    }
+//    @Override
+//    public void onBackPressed() {
+//        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+//            drawerLayout.closeDrawer(GravityCompat.START);
+//        } else {
+//            super.onBackPressed();
+//        }
+//    }
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
-        toggle.syncState();
+//        toggle.syncState();
     }
     @Override
     public void onPause() {
@@ -293,7 +266,7 @@ public class ClassXChapterWiseContent extends YouTubeBaseActivity {
         onInitializedListener = new YouTubePlayer.OnInitializedListener() {
             @Override
             public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer youTubePlayer, boolean b) {
-
+                if(!b)
                 youTubePlayer.loadVideo(url);
 
             }
