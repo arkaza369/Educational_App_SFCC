@@ -3,21 +3,37 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:id="@+id/video_layout"
+            android:padding="2dp"
+            android:background="@color/background_layout"
+            >
+            <TextView
+                android:id="@+id/video_title_chapterwise"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:text="@string/class_x_chaper_title"
+                android:textColor="@color/black_text_color"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+        </RelativeLayout>
+
+<ScrollView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="100dp">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
+        android:padding="10dp"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/video_title_chapterwise"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/black_text_color"
-            android:text="@string/class_x_chaper_title"
-            android:textColor="@color/white_color"
-            android:textSize="15sp"
-            android:textStyle="bold" />
 
         <!--
                                 <com.google.android.exoplayer2.ui.PlayerView
@@ -46,7 +62,36 @@
             android:textColor="@color/black_text_color"
             android:textSize="20sp"
             android:textStyle="bold" />
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/video_descp_chapterwise"
+            android:layout_marginTop="80dp"
+            android:gravity="center"
+            >
+            <TextView
+                android:id="@+id/user_instruction"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="@string/user_insrtruction"
+                android:textColor="@color/black_text_color"
+                android:textSize="17sp"
+                android:textStyle="italic" />
+        </RelativeLayout>
 
     </LinearLayout>
+
+
+
+
+
+
+
+
+
+</ScrollView>
+
+
 
 </RelativeLayout>
