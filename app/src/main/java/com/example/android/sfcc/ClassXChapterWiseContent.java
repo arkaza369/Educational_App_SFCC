@@ -267,7 +267,7 @@ public class ClassXChapterWiseContent extends YouTubeBaseActivity {
             @Override
             public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer youTubePlayer, boolean b) {
                 if(!b)
-                youTubePlayer.loadVideo(url);
+                youTubePlayer.loadPlaylist(url);
 
             }
 
