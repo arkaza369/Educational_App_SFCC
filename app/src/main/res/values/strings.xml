@@ -58,7 +58,7 @@
     <string name="about_contact_us_number">Phone no:  9801466755</string>
 
     <!-- <string name="logo_descp">Student's Friend's Coaching Centre</string> -->
-    <string name="user_insrtruction">To go to the next video of this chapter, first click on this video. After that click on the arrow on the right.
-    Click on the arrow on the left to go to the previous video.Happy Learning!</string>
+    <string name="user_insrtruction">इस चैप्टर के अगले वीडियो में जाने के लिए सबसे पहले इस वीडियो पर क्लिक करें। इसके बाद दाईं ओर दिए गए तीर पर क्लिक करें।
+    पिछले वीडियो पर जाने के लिए बाईं ओर के तीर पर क्लिक करें। हैप्पी लर्निंग!</string>
 
 </resources>
