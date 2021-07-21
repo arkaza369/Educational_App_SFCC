@@ -10,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:351312691351:android:10f649038da47f03faa9d2",
         "android_client_info": {
-          "package_name": "com.example.android.sfcc"
+          "package_name": "com.babusaheb.android.sfcc"
         }
       },
       "oauth_client": [
@@ -18,7 +18,7 @@
           "client_id": "351312691351-v441qn9tj7g9jfrg0qkgrgtan9clbvlc.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.android.sfcc",
+            "package_name": "com.babusaheb.android.sfcc",
             "certificate_hash": "6fd4b7a459356b8cc8aaa2bee87e9bd0569f7764"
           }
         },
