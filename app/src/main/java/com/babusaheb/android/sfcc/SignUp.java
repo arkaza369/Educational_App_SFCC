@@ -24,7 +24,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class SignUp extends AppCompatActivity implements View.OnClickListener {
-    private EditText enterEmail, enterPassword, enterConfirmPassword, enterMobileNO, enterUsername, enterFullName;
+    private EditText enterEmail, enterPassword, enterConfirmPassword, enterMobileNO, enterUsername, enterFullName,enterCityName;
     private Button register, login;
     private FirebaseAuth mAuth;
     ProgressBar progressBar;
@@ -38,6 +38,7 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
     String fullName;
     String username;
     String phoneNo;
+    String cityName;
     private static final String TAG = "SignUp";
 
     @Override
@@ -51,6 +52,8 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
         enterMobileNO = findViewById(R.id.mobile_no);
         enterUsername = findViewById(R.id.username);
         enterFullName = findViewById(R.id.full_name);
+        enterCityName = findViewById(R.id.city);
+
         register = findViewById(R.id.register);
         login = findViewById(R.id.login);
 
@@ -69,6 +72,7 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
         fullName = enterFullName.getText().toString();
         username = enterUsername.getText().toString();
         phoneNo = enterMobileNO.getText().toString();
+        cityName = enterCityName.getText().toString();
 
         /*if (phoneNo != null) {
             new AlertDialog.Builder(this)
@@ -174,7 +178,7 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
         //Saving user data to firebase
         root = FirebaseDatabase.getInstance("https://sfcc-29ece-default-rtdb.firebaseio.com/");
         reference = root.getReference("users");
-        UserModel userData = new UserModel(fullName, username, email, phoneNo, password);
+        UserModel userData = new UserModel(fullName, username, email, phoneNo, password,cityName);
         //  String key=reference.push().getKey();
         //reference.child(phoneNo).setValue(userData);
         //reference.setValue(userData);

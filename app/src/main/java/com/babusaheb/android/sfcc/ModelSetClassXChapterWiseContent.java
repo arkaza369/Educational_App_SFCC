@@ -279,7 +279,6 @@ public class ModelSetClassXChapterWiseContent extends AppCompatActivity {
                     try {
                         sleep(200);
 
-                       // progress.setProgress(jumpTime);
                     } catch (InterruptedException e) {
                         // TODO Auto-generated catch block
                         e.printStackTrace();
@@ -291,13 +290,11 @@ public class ModelSetClassXChapterWiseContent extends AppCompatActivity {
                     });
                 }
                 if (jumpTime >= totalProgressTime) {
-                    // sleeping for 1 second after operation completed
                     try {
                         Thread.sleep(1000);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
-                    // close the progress bar dialog
                     progress.dismiss();
                 }
 
