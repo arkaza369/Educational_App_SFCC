@@ -56,7 +56,8 @@ public class ClassTen extends AppCompatActivity {
         toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open, R.string.close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
-        mAuth = FirebaseAuth.getInstance();
+        mAuth = FirebaseAuth
+                .getInstance();
         navigationView.setItemIconTintList(null);
 
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {

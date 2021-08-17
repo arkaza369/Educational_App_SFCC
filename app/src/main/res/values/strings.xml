@@ -60,5 +60,6 @@
     <!-- <string name="logo_descp">Student's Friend's Coaching Centre</string> -->
     <string name="user_insrtruction">इस चैप्टर के अगले वीडियो में जाने के लिए सबसे पहले इस वीडियो पर क्लिक करें। इसके बाद दाईं ओर दिए गए तीर पर क्लिक करें।
     पिछले वीडियो पर जाने के लिए बाईं ओर के तीर पर क्लिक करें। हैप्पी लर्निंग!</string>
+    <string name="enter_city_name">Enter city name</string>
 
 </resources>

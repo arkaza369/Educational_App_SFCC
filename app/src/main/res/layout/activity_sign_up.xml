@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@color/background_layout"
     android:orientation="vertical"
-    android:padding="30dp"
+    android:padding="@dimen/signup_root_layout_padding"
     tools:context=".SignUp">
 
     <RelativeLayout
@@ -21,7 +21,7 @@
             android:gravity="center"
             android:text="Welcome to Student's Friend's Coaching Centre"
             android:textColor="@color/black_text_color"
-            android:textSize="15sp"
+            android:textSize="@dimen/signup_title_text_size"
             android:textStyle="bold" />
     </RelativeLayout>
 
@@ -38,13 +38,13 @@
             android:ems="10"
             android:hint="@string/enter_full_name"
             android:inputType="text"
-            android:textSize="22sp" />
+            android:textSize="@dimen/signup_fullname_text_size" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="@dimen/signup_textinputlayout_margintop"
         android:focusable="true"
         android:focusableInTouchMode="true">
 
@@ -55,13 +55,13 @@
             android:ems="10"
             android:hint="@string/username"
             android:inputType="text"
-            android:textSize="22sp" />
+            android:textSize="@dimen/signup_username_text_size" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="@dimen/signup_textinputlayout_margintop"
         android:focusable="true"
         android:focusableInTouchMode="true">
 
@@ -72,13 +72,13 @@
             android:ems="10"
             android:hint="@string/enter_email"
             android:inputType="textEmailAddress"
-            android:textSize="22sp" />
+            android:textSize="@dimen/signup_email_text_size" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="@dimen/signup_textinputlayout_margintop"
         android:focusable="true"
         android:focusableInTouchMode="true">
 
@@ -89,7 +89,24 @@
             android:ems="10"
             android:hint="@string/enter_mobile_no"
             android:inputType="number"
-            android:textSize="22sp" />
+            android:textSize="@dimen/signup_mobileno_text_size" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/signup_textinputlayout_margintop"
+        android:focusable="true"
+        android:focusableInTouchMode="true">
+
+        <EditText
+            android:id="@+id/city"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/enter_city_name"
+            android:inputType="text"
+            android:textSize="@dimen/signup_city_text_size" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -97,10 +114,11 @@
 
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="@dimen/signup_textinputlayout_margintop"
         app:hintAnimationEnabled="true"
         app:hintEnabled="true"
-        app:passwordToggleEnabled="true">
+        app:passwordToggleEnabled="false"
+        >
 
         <EditText
             android:id="@+id/password"
@@ -112,14 +130,14 @@
             android:hint="@string/enter_password"
             android:imeOptions="actionNext"
             android:inputType="textPassword"
-            android:textSize="22sp" />
+            android:textSize="@dimen/signup_password_text_size" />
     </com.google.android.material.textfield.TextInputLayout>
 
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="@dimen/signup_textinputlayout_margintop"
         android:focusable="true"
         android:focusableInTouchMode="true">
 
@@ -130,24 +148,24 @@
             android:ems="10"
             android:hint="@string/confirm_password"
             android:inputType="textPassword"
-            android:textSize="22sp" />
+            android:textSize="@dimen/signup_confirmpassword_text_size" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="40dp">
+        android:layout_marginTop="@dimen/signup_registerbuttonlayout_margintop">
 
         <Button
             android:id="@+id/register"
-            android:layout_width="210dp"
-            android:layout_height="50dp"
+            android:layout_width="@dimen/signup_registerbutton_width"
+            android:layout_height="@dimen/signup_registerbutton_height"
             android:background="@drawable/register_button_background"
             android:text="@string/register_button"
             android:textAllCaps="false"
             android:textColor="@color/white_color"
-            android:textSize="22sp" />
+            android:textSize="@dimen/signup_registerbutton_text_size" />
 
         <ProgressBar
             android:id="@+id/progressbar"
@@ -165,24 +183,24 @@
         android:layout_width="match_parent"
         android:layout_height="90dp"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="@dimen/signup_login_layout_margintop"
         android:background="@color/signUp_second_layout_background"
         android:orientation="horizontal"
-        android:padding="15dp">
+        android:padding="@dimen/signup_login_layout_padding">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/already_signed_in"
             android:textColor="@color/black_text_color"
-            android:textSize="15sp"
+            android:textSize="@dimen/signup_alreadysignedin_text_size"
             android:textStyle="bold" />
 
         <Button
             android:id="@+id/login"
-            android:layout_width="78dp"
+            android:layout_width="@dimen/signup_loginbutton_width"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="70dp"
+            android:layout_marginLeft="@dimen/signup_loginbutton_marginleft"
             android:background="@drawable/login_button_background"
             android:text="@string/login_button"
             android:textAllCaps="false"
