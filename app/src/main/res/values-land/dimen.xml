@@ -12,17 +12,15 @@
     <dimen name="login_loginandforgetpasswordbutton_layout_padding">5dp</dimen>
     <dimen name="login_notauser_register_layout_padding">5dp</dimen>
 
-
     <!-- Layouts      -->
 
     <dimen name="signup_textinputlayout_margintop">10dp</dimen>
     <dimen name="signup_registerbuttonlayout_margintop">30dp</dimen>
     <dimen name="signup_login_layout_margintop">40dp</dimen>
-    <dimen name="login_passwordlayout_margintop">10dp</dimen>
+    <dimen name="login_passwordlayout_margintop">8dp</dimen>
     <dimen name="login_progressbar_layout_margintop">10dp</dimen>
-    <dimen name="login_loginandforgetpasswordbutton_layout_margintop">40dp</dimen>
-    <dimen name="login_notauser_register_layout_margintop">80dp</dimen>
-
+    <dimen name="login_loginandforgetpasswordbutton_layout_margintop">15dp</dimen>
+    <dimen name="login_notauser_register_layout_margintop">30dp</dimen>
     <!-- Textviews   -->
     <dimen name="signup_title_text_size">20sp</dimen>
     <dimen name="signup_fullname_text_size">22sp</dimen>
@@ -33,17 +31,18 @@
     <dimen name="signup_password_text_size">22sp</dimen>
     <dimen name="signup_confirmpassword_text_size">22sp</dimen>
     <dimen name="signup_registerbutton_text_size">22sp</dimen>
-    <dimen name="signup_alreadysignedin_text_size">15sp</dimen>
+    <dimen name="signup_alreadysignedin_text_size">20sp</dimen>
     <dimen name="login_title_text_size">20sp</dimen>
     <dimen name="login_email_text_size">22sp</dimen>
     <dimen name="login_password_text_size">22sp</dimen>
     <dimen name="login_notauser_text_size">15sp</dimen>
     <dimen name="login_notauser_textlayout_width">130dp</dimen>
+
     <!--   Buttons -->
     <dimen name="signup_registerbutton_width">210dp</dimen>
     <dimen name="signup_registerbutton_height">50dp</dimen>
     <dimen name="signup_loginbutton_width">78dp</dimen>
-    <dimen name="signup_loginbutton_marginleft">70dp</dimen>
+    <dimen name="signup_loginbutton_marginleft">80dp</dimen>
     <dimen name="login_loginbutton_width">130dp</dimen>
     <dimen name="login_forgetpasswordbutton_width">150dp</dimen>
     <dimen name="login_forgetpasswordbutton_marginleft">40dp</dimen>
