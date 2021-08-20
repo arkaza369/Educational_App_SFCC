@@ -1,13 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Login"
-    android:orientation="vertical"
-    android:padding="@dimen/login_root_layout_padding"
-    android:background="@color/background_layout">
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="@dimen/login_root_layout_padding"
+        android:background="@color/background_layout">
+
+
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -16,11 +22,11 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:text="Welcome to Student's Friend's Coaching Centre"
             android:textColor="@color/black_text_color"
-            android:textStyle="bold"
-            android:gravity="center"
-            android:textSize="@dimen/login_title_text_size"/>
+            android:textSize="@dimen/login_title_text_size"
+            android:textStyle="bold" />
     </RelativeLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -71,7 +77,7 @@
         android:layout_marginTop="@dimen/login_loginandforgetpasswordbutton_layout_margintop"
         android:orientation="horizontal"
         android:padding="@dimen/login_loginandforgetpasswordbutton_layout_padding"
-        android:layout_gravity="center_horizontal">
+        android:gravity="center_horizontal">
         <Button
             android:layout_width="@dimen/login_loginbutton_width"
             android:layout_height="wrap_content"
@@ -126,5 +132,5 @@
 
     </LinearLayout>
 
-
-</LinearLayout>
+    </LinearLayout>
+</ScrollView>
