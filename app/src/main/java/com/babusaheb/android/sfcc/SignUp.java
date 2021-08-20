@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
@@ -39,6 +40,7 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
     String username;
     String phoneNo;
     String cityName;
+    private FirebaseAnalytics mFirebaseAnalytics;
     private static final String TAG = "SignUp";
 
     @Override
@@ -53,7 +55,8 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
         enterUsername = findViewById(R.id.username);
         enterFullName = findViewById(R.id.full_name);
         enterCityName = findViewById(R.id.city);
-
+// Obtain the FirebaseAnalytics instance.
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
         register = findViewById(R.id.register);
         login = findViewById(R.id.login);
 
@@ -100,6 +103,11 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
         }
         else*/
         emailAuthentication();
+        Bundle bundle = new Bundle();
+        bundle.putString(FirebaseAnalytics.Param.ITEM_ID, email);
+        bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, fullName);
+        bundle.putString("PHONE", phoneNo);
+        mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SIGN_UP, bundle);
     }
 
     public void emailAuthentication() {
