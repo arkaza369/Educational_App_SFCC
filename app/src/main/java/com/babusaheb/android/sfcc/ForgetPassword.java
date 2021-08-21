@@ -50,7 +50,7 @@ public class ForgetPassword extends AppCompatActivity {
                             });
                 }catch (Exception ex){
                     Toast.makeText(ForgetPassword.this, ex.getMessage()+" please register with correct email", Toast.LENGTH_LONG).show();
-                    progressBar.setVisibility(View.VISIBLE);
+                    progressBar.setVisibility(View.GONE);
                 }
             }
         });
