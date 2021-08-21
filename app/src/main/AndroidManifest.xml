@@ -21,7 +21,6 @@
         <activity android:name="com.babusaheb.android.sfcc.ClassXSyllabusList" />
         <activity android:name="com.babusaheb.android.sfcc.Settings" />
         <activity android:name="com.babusaheb.android.sfcc.ForgetPassword" />
-        <activity android:name="com.babusaheb.android.sfcc.VerifyPhoneNo" />
         <activity android:name="com.babusaheb.android.sfcc.ClassTen" />
         <activity android:name="com.babusaheb.android.sfcc.TutorsActivity" />
         <activity android:name="com.babusaheb.android.sfcc.ModelSetActivity" />

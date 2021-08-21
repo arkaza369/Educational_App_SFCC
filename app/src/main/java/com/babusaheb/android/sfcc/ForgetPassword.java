@@ -36,10 +36,9 @@ public class ForgetPassword extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 progressBar.setVisibility(View.VISIBLE);
-                firebaseAuth.sendPasswordResetEmail(emailFP.getText().toString())
-                        .addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
+                try {
+                    firebaseAuth.sendPasswordResetEmail(emailFP.getText().toString())
+                            .addOnCompleteListener(task -> {
                                 progressBar.setVisibility(View.GONE);
                                 if (task.isSuccessful()) {
                                     Toast.makeText(ForgetPassword.this,
@@ -48,8 +47,11 @@ public class ForgetPassword extends AppCompatActivity {
                                     Toast.makeText(ForgetPassword.this,
                                             task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                                 }
-                            }
-                        });
+                            });
+                }catch (Exception ex){
+                    Toast.makeText(ForgetPassword.this, ex.getMessage()+" please register with correct email", Toast.LENGTH_SHORT).show();
+                    progressBar.setVisibility(View.VISIBLE);
+                }
             }
         });
 
