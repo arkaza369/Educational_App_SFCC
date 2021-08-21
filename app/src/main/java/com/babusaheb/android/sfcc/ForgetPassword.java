@@ -45,7 +45,7 @@ public class ForgetPassword extends AppCompatActivity {
                                             "reset password link is sent to your email!", Toast.LENGTH_SHORT).show();
                                 } else {
                                     Toast.makeText(ForgetPassword.this,
-                                            task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                                            task.getException().getMessage()+" please register with correct email", Toast.LENGTH_SHORT).show();
                                 }
                             });
                 }catch (Exception ex){
