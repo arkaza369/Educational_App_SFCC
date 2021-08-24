@@ -30,8 +30,8 @@
         <activity android:name="com.babusaheb.android.sfcc.CoursesActivity" />
         <activity android:name="com.babusaheb.android.sfcc.MainActivity"
            />
-        <activity android:name="com.babusaheb.android.sfcc.SignUp" />
-        <activity android:name="com.babusaheb.android.sfcc.Login">
+        <activity android:name="com.babusaheb.android.sfcc.Login" />
+        <activity android:name="com.babusaheb.android.sfcc.SignUp">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -149,7 +149,9 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
                 if (task.isSuccessful()) {
                     storeUserDataToDatabase();
                     finish();
-                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(intent);
                 } else {
 
                     if (task.getException() instanceof FirebaseAuthUserCollisionException) {
@@ -195,4 +197,14 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
         Log.d(TAG, "storeUserDataToDatabase: " + uid);
         reference.child(uid).setValue(userData);
     }
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        if (mAuth.getCurrentUser() != null) {
+            finish();
+            startActivity(new Intent(this, MainActivity.class));
+        }
+    }
+
 }

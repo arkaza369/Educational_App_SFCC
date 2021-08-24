@@ -74,7 +74,8 @@
                 android:fontFamily="sans-serif-medium"
                 android:text="Student's Friend's Coaching Centre"
                 android:textColor="@color/white_color"
-                android:textSize="20sp">
+                android:textSize="20sp"
+                android:textStyle="bold">
 
             </TextView>
 
