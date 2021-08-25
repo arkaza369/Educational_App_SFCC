@@ -1,16 +1,15 @@
 package com.babusaheb.android.sfcc;
 
 public class UserModel {
-    String fullName,username,email,phoneNo,password,cityName;
+    String fullName,email,phoneNo,password,cityName;
 
     public UserModel() {
 
     }
 
-    public UserModel(String fullName, String username, String email, String phoneNo, String password,
+    public UserModel(String fullName,  String email, String phoneNo, String password,
                      String cityName) {
         this.fullName = fullName;
-        this.username = username;
         this.email = email;
         this.phoneNo = phoneNo;
         this.password = password;
@@ -24,14 +23,6 @@ public class UserModel {
 
     public void setFullName(String fullName) {
         this.fullName = fullName;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
     }
 
     public String getEmail() {

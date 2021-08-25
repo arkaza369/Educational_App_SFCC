@@ -147,11 +147,11 @@ public class ModelSetClassXChapterWiseContent extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot datas : dataSnapshot.getChildren()) {
                     View view = navigationView.getHeaderView(0);
-                    if (datas.getKey().equals("username")) {
+                    if (datas.getKey().equals("fullName")) {
 
-                        String user_name = datas.getValue().toString();
+                        String name = datas.getValue().toString();
                         TextView username = view.findViewById(R.id.name);
-                        username.setText("Welcome " + user_name);
+                        username.setText("Welcome " + name);
                     }
 
                     CircularImageView userProfilePic = view.findViewById(R.id.imageView);
