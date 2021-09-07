@@ -37,7 +37,6 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
     String password;
     String confirmPassword;
     String fullName;
-    String username;
     String phoneNo;
     String cityName;
     private FirebaseAnalytics mFirebaseAnalytics;
@@ -52,7 +51,6 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
         enterPassword = findViewById(R.id.password);
         enterConfirmPassword = findViewById(R.id.confirm_password);
         enterMobileNO = findViewById(R.id.mobile_no);
-        enterUsername = findViewById(R.id.username);
         enterFullName = findViewById(R.id.full_name);
         enterCityName = findViewById(R.id.city);
 // Obtain the FirebaseAnalytics instance.
@@ -73,7 +71,6 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
         password = enterPassword.getText().toString().trim();
         confirmPassword = enterConfirmPassword.getText().toString().trim();
         fullName = enterFullName.getText().toString();
-        username = enterUsername.getText().toString();
         phoneNo = enterMobileNO.getText().toString();
         cityName = enterCityName.getText().toString();
 
@@ -105,8 +102,6 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
         emailAuthentication();
         Bundle bundle = new Bundle();
         bundle.putString(FirebaseAnalytics.Param.ITEM_ID, email);
-        bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, fullName);
-        bundle.putString("PHONE", phoneNo);
         mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SIGN_UP, bundle);
     }
 
@@ -188,7 +183,7 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
         //Saving user data to firebase
         root = FirebaseDatabase.getInstance("https://sfcc-29ece-default-rtdb.firebaseio.com/");
         reference = root.getReference("users");
-        UserModel userData = new UserModel(fullName, username, email, phoneNo, password,cityName);
+        UserModel userData = new UserModel(fullName, email, phoneNo, password,cityName);
         //  String key=reference.push().getKey();
         //reference.child(phoneNo).setValue(userData);
         //reference.setValue(userData);
