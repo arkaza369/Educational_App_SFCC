@@ -197,6 +197,9 @@ public class ModelSetClassXChapterWiseContent extends AppCompatActivity {
                     }
 
                     index++;
+
+
+
                 }
             }
 
@@ -264,8 +267,10 @@ public class ModelSetClassXChapterWiseContent extends AppCompatActivity {
         //progress.setIndeterminate(true);
         progress.setMax(100);
         progress.setProgress(0);
+        if(!isFinishing()){
+            progress.show();
+        }
 
-        progress.show();
 
         final int totalProgressTime = 100;
         final Thread t = new Thread() {

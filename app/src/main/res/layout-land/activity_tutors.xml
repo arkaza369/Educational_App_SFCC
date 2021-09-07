@@ -38,12 +38,16 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+
+        >
 
         <RelativeLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="60dp">
+            android:layout_marginTop="60dp"
+            android:layout_gravity="center"
+            >
 
             <LinearLayout
                 android:id="@+id/main_header"
@@ -68,6 +72,7 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="40dp"
                     android:layout_marginTop="45dp"
                     android:orientation="vertical">
 
@@ -116,10 +121,11 @@
 
 
                     <LinearLayout
-                        android:layout_width="350dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:background="#FFFBE6"
+                        android:padding="@dimen/padding_10"
                         android:orientation="vertical">
 
                         <TextView
@@ -147,7 +153,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:layout_marginTop="300dp"
+                        android:layout_marginTop="150dp"
                         android:text="Contact Us at:"
                         android:textColor="@color/black_text_color"
                         android:textSize="20sp"
@@ -156,10 +162,10 @@
                     </TextView>
 
                     <LinearLayout
-                        android:layout_width="350dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:layout_marginTop="330dp"
+                        android:layout_marginTop="190dp"
                         android:background="#F2FDE4"
                         android:orientation="vertical">
 
