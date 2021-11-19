@@ -13,26 +13,26 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
-        >
-        <activity android:name="com.babusaheb.android.sfcc.ModelSetClassXSyllabusList"/>
-        <activity android:name="com.babusaheb.android.sfcc.ModelSetClassXChapterWiseContent" />
-        <activity android:name="com.babusaheb.android.sfcc.ClassXChapterWiseContent"
-         />
-        <activity android:name="com.babusaheb.android.sfcc.ClassXSyllabusList" />
-        <activity android:name="com.babusaheb.android.sfcc.Settings" />
-        <activity android:name="com.babusaheb.android.sfcc.ForgetPassword" />
-        <activity android:name="com.babusaheb.android.sfcc.ClassTen" />
-        <activity android:name="com.babusaheb.android.sfcc.TutorsActivity" />
-        <activity android:name="com.babusaheb.android.sfcc.ModelSetActivity" />
-        <activity android:name="com.babusaheb.android.sfcc.TestYourselfActivity" />
-        <activity android:name="com.babusaheb.android.sfcc.TestYourselfDetailActivity" />
-        <activity android:name="com.babusaheb.android.sfcc.MCQActivity" />
-        <activity android:name="com.babusaheb.android.sfcc.CoursesActivity" />
-        <activity android:name="com.babusaheb.android.sfcc.MainActivity"
-           />
-        <activity android:name="com.babusaheb.android.sfcc.Login" />
-        <activity android:name="com.babusaheb.android.sfcc.SignUp">
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".ClassXCrashCourseContent"
+            android:exported="true" />
+        <activity android:name=".ModelSetClassXSyllabusList" />
+        <activity android:name=".ModelSetClassXChapterWiseContent" />
+        <activity android:name=".ClassXChapterWiseContent" />
+        <activity android:name=".ClassXSyllabusList" />
+        <activity android:name=".Settings" />
+        <activity android:name=".ForgetPassword" />
+        <activity android:name=".ClassTen" />
+        <activity android:name=".TutorsActivity" />
+        <activity android:name=".ModelSetActivity" />
+        <activity android:name=".TestYourselfActivity" />
+        <activity android:name=".TestYourselfDetailActivity" />
+        <activity android:name=".MCQActivity" />
+        <activity android:name=".CoursesActivity" />
+        <activity android:name=".MainActivity" />
+        <activity android:name=".Login" />
+        <activity android:name=".SignUp">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

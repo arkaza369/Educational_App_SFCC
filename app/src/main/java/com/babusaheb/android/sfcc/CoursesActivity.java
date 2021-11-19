@@ -32,7 +32,7 @@ public class CoursesActivity extends AppCompatActivity implements View.OnClickLi
     private NavigationView navigationView;
     private ActionBarDrawerToggle toggle;
     private String TAG = "CoursesActivity";
-    private CardView class_8, class_9, class_10, hindi_grammer, eng_grammer;
+    private CardView class_8, class_9, class_10, hindi_grammer, class_10_crash_course;
     FirebaseAuth mAuth;
     DatabaseReference reference;
     FirebaseUser user;
@@ -55,14 +55,15 @@ public class CoursesActivity extends AppCompatActivity implements View.OnClickLi
        /* class_8 = findViewById(R.id.class_8);
         class_9 = findViewById(R.id.class_9);*/
         class_10 = findViewById(R.id.class_10);
+        class_10_crash_course = findViewById(R.id.class_10_crash_course);
       /*  hindi_grammer = findViewById(R.id.hindi_grammer);
         eng_grammer = findViewById(R.id.eng_grammer);*/
 
         /*class_8.setOnClickListener(this);
         class_9.setOnClickListener(this);*/
         class_10.setOnClickListener(this);
-        /*hindi_grammer.setOnClickListener(this);
-        eng_grammer.setOnClickListener(this);*/
+        /*hindi_grammer.setOnClickListener(this);*/
+        class_10_crash_course.setOnClickListener(this);
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -193,11 +194,12 @@ public class CoursesActivity extends AppCompatActivity implements View.OnClickLi
            /* case R.id.hindi_grammer:
                 Log.d(TAG, "onClick: hindi_grammer");
                 Toast.makeText(CoursesActivity.this, "Hindi Grammer", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.eng_grammer:
-                Log.d(TAG, "onClick: eng_grammer");
-                Toast.makeText(CoursesActivity.this, "English Grammer", Toast.LENGTH_SHORT).show();
                 break;*/
+            case R.id.class_10_crash_course:
+                Log.d(TAG, "onClick: ClassXCrashCourseSyllabusList");
+                intent = new Intent(this, ClassXCrashCourseContent.class);
+                startActivity(intent);
+                break;
             default:
                 break;
         }

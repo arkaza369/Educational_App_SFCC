@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/video_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:background="@color/background_layout"
+        android:padding="2dp">
+
+        <TextView
+            android:id="@+id/video_title_chapterwise"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:text="@string/class_x_chaper_title"
+            android:textColor="@color/black_text_color"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:orientation="vertical"
+            android:padding="10dp">
+
+
+            <!--
+                                    <com.google.android.exoplayer2.ui.PlayerView
+                                        android:id="@+id/exoplayer_view_chapterwise"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="300dp"
+                                        android:layout_gravity="center"
+                                        android:background="@color/black_text_color"
+                                        android:padding="10dp"
+                                        app:resize_mode="fill" />-->
+            <com.google.android.youtube.player.YouTubePlayerView
+                android:id="@+id/youtube_player_view_chapterwise"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:resize_mode="fill" />
+
+
+            <TextView
+                android:id="@+id/video_descp_chapterwise"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/background_layout"
+                android:paddingTop="10dp"
+                android:text="@string/class_x_chaper_descp"
+                android:textColor="@color/black_text_color"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/video_descp_chapterwise"
+                android:layout_marginTop="80dp"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/user_instruction"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:text="@string/user_insrtruction_crash_course_x"
+                    android:textColor="@color/black_text_color"
+                    android:textSize="17sp"
+                    android:textStyle="italic" />
+            </RelativeLayout>
+
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>
