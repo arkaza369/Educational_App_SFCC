@@ -5,7 +5,7 @@
     android:layout_height="match_parent">
 
     <RelativeLayout
-        android:id="@+id/video_layout"
+        android:id="@+id/class_nine_video_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
@@ -16,7 +16,7 @@
 
         <TextView
             android:gravity="center"
-            android:id="@+id/video_title_chapterwise"
+            android:id="@+id/class_nine_video_title_chapterwise"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/class_x_chaper_title"
@@ -38,14 +38,14 @@
             android:padding="10dp">
 
             <com.google.android.youtube.player.YouTubePlayerView
-                android:id="@+id/youtube_player_view_chapterwise"
+                android:id="@+id/class_nine_youtube_player_view_chapterwise"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:resize_mode="fill" />
 
 
             <TextView
-                android:id="@+id/video_descp_chapterwise"
+                android:id="@+id/class_nine_video_descp_chapterwise"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/background_layout"
@@ -58,12 +58,12 @@
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/video_descp_chapterwise"
+                android:layout_below="@+id/class_nine_video_descp_chapterwise"
                 android:layout_marginTop="80dp"
                 android:gravity="center">
 
                 <TextView
-                    android:id="@+id/user_instruction"
+                    android:id="@+id/class_nine_user_instruction"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center_horizontal"

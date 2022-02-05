@@ -68,12 +68,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/background_layout"
-        android:layout_marginTop="@dimen/login_loginandforgetpasswordbutton_layout_margintop"
+        android:layout_margin="20dp"
+        android:padding="10dp"
         android:orientation="horizontal"
-        android:padding="@dimen/login_loginandforgetpasswordbutton_layout_padding"
-        android:layout_gravity="center_horizontal">
+        android:gravity="center">
         <Button
-            android:layout_width="@dimen/login_loginbutton_width"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/login_button"
             android:text="@string/login_button"
@@ -83,13 +83,14 @@
             />
 
         <Button
-            android:layout_width="@dimen/login_forgetpasswordbutton_width"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/forgot_password"
+            android:layout_marginLeft="50dp"
             android:text="@string/forgot_password"
+            android:padding="@dimen/padding_10"
             android:textColor="@color/white_color"
             android:textAllCaps="false"
-            android:layout_marginLeft="@dimen/login_forgetpasswordbutton_marginleft"
             android:background="@drawable/forget_password_background"
             />
 
@@ -99,12 +100,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@color/class_10_layout_bck"
-        android:layout_marginTop="@dimen/login_notauser_register_layout_margintop"
         android:orientation="horizontal"
-        android:padding="@dimen/login_notauser_register_layout_padding"
+        android:layout_margin="10dp"
+        android:padding="10dp"
         android:layout_gravity="center_horizontal">
         <TextView
-            android:layout_width="@dimen/login_notauser_textlayout_width"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/not_a_user"
             android:textAllCaps="false"
@@ -114,7 +115,7 @@
 
             />
         <Button
-            android:layout_width="@dimen/login_registerbutton_width"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/register_button"
             android:id="@+id/register_button"

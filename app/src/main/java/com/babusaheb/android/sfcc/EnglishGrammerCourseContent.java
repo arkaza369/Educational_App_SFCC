@@ -1,29 +1,25 @@
 package com.babusaheb.android.sfcc;
 
-import android.content.Intent;
+
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.widget.Toolbar;
-
 import com.google.android.youtube.player.YouTubeBaseActivity;
 import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.google.android.youtube.player.YouTubePlayer;
 import com.google.android.youtube.player.YouTubePlayerView;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class ClassXCrashCourseContent extends YouTubeBaseActivity {
+public class EnglishGrammerCourseContent extends YouTubeBaseActivity {
 
-    private String TAG = "ClassXCrashCourseContent";
+    private String TAG = "EnglishGrammerCourseContent";
 
     private TextView chapter_title,chapter_descp;
     YouTubePlayerView youTubePlayerView;
@@ -35,19 +31,20 @@ public class ClassXCrashCourseContent extends YouTubeBaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_class_xcrash_course_content);
+        setContentView(R.layout.activity_english_grammer_course_content);
 
-        chapter_title = findViewById(R.id.video_title_chapterwise);
-        chapter_descp = findViewById(R.id.video_descp_chapterwise);
-        youTubePlayerView = findViewById(R.id.youtube_player_view_chapterwise);
+        chapter_title = findViewById(R.id.english_grammer_video_title_chapterwise);
+        chapter_descp = findViewById(R.id.english_grammer_video_descp_chapterwise);
+        youTubePlayerView = findViewById(R.id.english_grammer_youtube_player_view_chapterwise);
 
         mAuth = FirebaseAuth.getInstance();
-        String id = mAuth.getCurrentUser().getUid();
 
+        String id = mAuth.getCurrentUser().getUid();
         reference = FirebaseDatabase.getInstance("https://sfcc-29ece-default-rtdb.firebaseio.com/").
                 getReference();
+
         reference_videos = FirebaseDatabase.getInstance("https://sfcc-29ece-default-rtdb.firebaseio.com/").
-                getReference("course/class_10_crash_course");
+                getReference("course/english");
 
 
         reference_videos.addValueEventListener(new ValueEventListener() {
@@ -105,7 +102,9 @@ public class ClassXCrashCourseContent extends YouTubeBaseActivity {
             public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer youTubePlayer, boolean b) {
                 if(!b)
                     youTubePlayer.loadPlaylist(url);
+
             }
+
             @Override
             public void onInitializationFailure(YouTubePlayer.Provider provider, YouTubeInitializationResult youTubeInitializationResult) {
 

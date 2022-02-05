@@ -21,9 +21,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class ClassXCrashCourseContent extends YouTubeBaseActivity {
+public class ClassNineCourseContent extends YouTubeBaseActivity {
 
-    private String TAG = "ClassXCrashCourseContent";
+    private String TAG = "ClassNineCourseContent";
 
     private TextView chapter_title,chapter_descp;
     YouTubePlayerView youTubePlayerView;
@@ -35,20 +35,20 @@ public class ClassXCrashCourseContent extends YouTubeBaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_class_xcrash_course_content);
+        setContentView(R.layout.activity_class_nine_course_content);
 
-        chapter_title = findViewById(R.id.video_title_chapterwise);
-        chapter_descp = findViewById(R.id.video_descp_chapterwise);
-        youTubePlayerView = findViewById(R.id.youtube_player_view_chapterwise);
+        chapter_title = findViewById(R.id.class_nine_video_title_chapterwise);
+        chapter_descp = findViewById(R.id.class_nine_video_descp_chapterwise);
+        youTubePlayerView = findViewById(R.id.class_nine_youtube_player_view_chapterwise);
+
+
 
         mAuth = FirebaseAuth.getInstance();
         String id = mAuth.getCurrentUser().getUid();
-
         reference = FirebaseDatabase.getInstance("https://sfcc-29ece-default-rtdb.firebaseio.com/").
                 getReference();
         reference_videos = FirebaseDatabase.getInstance("https://sfcc-29ece-default-rtdb.firebaseio.com/").
-                getReference("course/class_10_crash_course");
-
+                getReference("course/class_9");
 
         reference_videos.addValueEventListener(new ValueEventListener() {
             @Override
@@ -105,7 +105,9 @@ public class ClassXCrashCourseContent extends YouTubeBaseActivity {
             public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer youTubePlayer, boolean b) {
                 if(!b)
                     youTubePlayer.loadPlaylist(url);
+
             }
+
             @Override
             public void onInitializationFailure(YouTubePlayer.Provider provider, YouTubeInitializationResult youTubeInitializationResult) {
 

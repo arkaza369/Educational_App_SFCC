@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -32,7 +33,7 @@ public class CoursesActivity extends AppCompatActivity implements View.OnClickLi
     private NavigationView navigationView;
     private ActionBarDrawerToggle toggle;
     private String TAG = "CoursesActivity";
-    private CardView class_8, class_9, class_10, hindi_grammer, class_10_crash_course;
+    private CardView class_8, class_9, class_10, hindi_grammer, class_10_crash_course,eng_grammer;
     FirebaseAuth mAuth;
     DatabaseReference reference;
     FirebaseUser user;
@@ -52,17 +53,17 @@ public class CoursesActivity extends AppCompatActivity implements View.OnClickLi
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
 
-       /* class_8 = findViewById(R.id.class_8);
-        class_9 = findViewById(R.id.class_9);*/
+       // class_8 = findViewById(R.id.class_8);
+        class_9 = findViewById(R.id.class_9);
         class_10 = findViewById(R.id.class_10);
         class_10_crash_course = findViewById(R.id.class_10_crash_course);
-      /*  hindi_grammer = findViewById(R.id.hindi_grammer);
-        eng_grammer = findViewById(R.id.eng_grammer);*/
+      /*  hindi_grammer = findViewById(R.id.hindi_grammer);*/
+        eng_grammer = findViewById(R.id.eng_grammer);
 
-        /*class_8.setOnClickListener(this);
-        class_9.setOnClickListener(this);*/
+        /*class_8.setOnClickListener(this);*/
+        class_9.setOnClickListener(this);
         class_10.setOnClickListener(this);
-        /*hindi_grammer.setOnClickListener(this);*/
+        eng_grammer.setOnClickListener(this);
         class_10_crash_course.setOnClickListener(this);
 
         mAuth = FirebaseAuth.getInstance();
@@ -181,20 +182,22 @@ public class CoursesActivity extends AppCompatActivity implements View.OnClickLi
           /*  case R.id.class_8:
                 Toast.makeText(getBaseContext(), "Class Eight", Toast.LENGTH_SHORT).show();
                 Log.d(TAG, "onClick: class 8");
-                break;
-            case R.id.class_9:
-                Toast.makeText(CoursesActivity.this, "Class Nine", Toast.LENGTH_SHORT).show();
-                Log.d(TAG, "onClick: class 9");
                 break;*/
+            case R.id.class_9:
+                Log.d(TAG, "onClick: class 9");
+                intent = new Intent(this, ClassNineCourseContent.class);
+                startActivity(intent);
+                break;
             case R.id.class_10:
                 Log.d(TAG, "onClick: class 10");
                 intent = new Intent(this, ClassXSyllabusList.class);
                 startActivity(intent);
                 break;
-           /* case R.id.hindi_grammer:
+            case R.id.eng_grammer:
                 Log.d(TAG, "onClick: hindi_grammer");
-                Toast.makeText(CoursesActivity.this, "Hindi Grammer", Toast.LENGTH_SHORT).show();
-                break;*/
+                intent = new Intent(this, EnglishGrammerCourseContent.class);
+                startActivity(intent);
+                break;
             case R.id.class_10_crash_course:
                 Log.d(TAG, "onClick: ClassXCrashCourseSyllabusList");
                 intent = new Intent(this, ClassXCrashCourseContent.class);
