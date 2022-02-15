@@ -29,6 +29,9 @@
         <activity
             android:name=".ClassXCrashCourseContent"
             android:exported="true" />
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-1158237725650504~9531463408"/>
         <activity android:name=".ModelSetClassXSyllabusList" />
         <activity android:name=".ModelSetClassXChapterWiseContent" />
         <activity android:name=".ClassXChapterWiseContent" />

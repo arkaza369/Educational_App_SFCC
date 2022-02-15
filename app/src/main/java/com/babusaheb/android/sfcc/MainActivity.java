@@ -15,6 +15,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.LoadAdError;
+import com.google.android.gms.ads.rewarded.RewardedAd;
+import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -34,7 +38,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private ActionBarDrawerToggle toggle;
     private String TAG = "MainActivity";
     private CardView coursesCard, testCard, tutorsCard, modelSetCard;
-
+    private RewardedAd mRewardedAd;
     DatabaseReference reference;
     FirebaseAuth mAuth;
     FirebaseUser user;
@@ -182,14 +186,34 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         moveTaskToBack(true);
     }
 
+    public void loadRewardedAd(Intent intent){
+        AdRequest adRequest = new AdRequest.Builder().build();
 
+        RewardedAd.load(this, "ca-app-pub-1158237725650504/1409430803",
+                adRequest, new RewardedAdLoadCallback() {
+                    @Override
+                    public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+                        // Handle the error.
+                        Log.d(TAG, loadAdError.getMessage());
+                        mRewardedAd = null;
+                        startActivity(intent);
+                    }
+
+                    @Override
+                    public void onAdLoaded(@NonNull RewardedAd rewardedAd) {
+                        mRewardedAd = rewardedAd;
+                        Log.d(TAG, "Ad was loaded.");
+                        startActivity(intent);
+                    }
+                });
+    }
     @Override
     public void onClick(View v) {
         Intent intent;
         switch (v.getId()) {
             case R.id.courses_card:
                 intent = new Intent(this, CoursesActivity.class);
-                startActivity(intent);
+                loadRewardedAd(intent);
                 break;
             case R.id.tutors_card:
                 intent = new Intent(this, TutorsActivity.class);
@@ -197,7 +221,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.model_set_card:
                 intent = new Intent(this, ModelSetActivity.class);
-                startActivity(intent);
+                loadRewardedAd(intent);
                 break;
             case R.id.test_yourself_card:
                 intent = new Intent(this, TestYourselfActivity.class);
