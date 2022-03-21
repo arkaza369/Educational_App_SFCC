@@ -33,7 +33,6 @@ public class TutorsActivity extends AppCompatActivity {
     private NavigationView navigationView;
     private ActionBarDrawerToggle toggle;
     private String TAG = "TutorsActivity";
-    private CardView class_8, class_9, class_10, hindi_grammer, eng_grammer;
     FirebaseAuth mAuth;
     DatabaseReference reference;
     FirebaseUser user;

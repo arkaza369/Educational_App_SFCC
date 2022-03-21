@@ -150,6 +150,7 @@
                 android:id="@+id/register"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:padding="5dp"
                 android:background="@drawable/register_button_background"
                 android:text="@string/register_button"
                 android:textAllCaps="false"

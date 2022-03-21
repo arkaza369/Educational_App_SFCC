@@ -9,21 +9,26 @@
         <entry key="..\:/Users/ARKAZA KUMARI/Desktop/Educational_App_SFCC/app/src/main/res/layout/activity_login.xml" value="0.16576086956521738" />
         <entry key="..\:/Users/ARKAZA KUMARI/Desktop/Educational_App_SFCC/app/src/main/res/layout/activity_sign_up.xml" value="0.13020833333333334" />
         <entry key="app/src/main/res/drawable/forget_password_background.xml" value="0.18981481481481483" />
+        <entry key="app/src/main/res/layout-land/activity_courses.xml" value="0.1" />
         <entry key="app/src/main/res/layout-land/activity_login.xml" value="0.2623456790123457" />
+        <entry key="app/src/main/res/layout-land/activity_main.xml" value="0.2623456790123457" />
         <entry key="app/src/main/res/layout-land/activity_sign_up.xml" value="0.2623456790123457" />
         <entry key="app/src/main/res/layout/activity_class_nine_course_content.xml" value="0.3098958333333333" />
         <entry key="app/src/main/res/layout/activity_class_ten.xml" value="0.3098958333333333" />
         <entry key="app/src/main/res/layout/activity_class_xchapter_wise_content.xml" value="0.3098958333333333" />
         <entry key="app/src/main/res/layout/activity_class_xcrash_course_content.xml" value="0.18931159420289856" />
         <entry key="app/src/main/res/layout/activity_class_xsyllabus_list.xml" value="0.3098958333333333" />
-        <entry key="app/src/main/res/layout/activity_courses.xml" value="0.15070921985815602" />
+        <entry key="app/src/main/res/layout/activity_courses.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_english_grammer_course_content.xml" value="0.3098958333333333" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.3098958333333333" />
         <entry key="app/src/main/res/layout/activity_model_set.xml" value="0.3098958333333333" />
         <entry key="app/src/main/res/layout/activity_model_set_class_xchapter_wise_content.xml" value="0.3098958333333333" />
         <entry key="app/src/main/res/layout/activity_model_set_class_xsyllabus_list.xml" value="0.3098958333333333" />
         <entry key="app/src/main/res/layout/activity_sign_up.xml" value="0.15070921985815602" />
+        <entry key="app/src/main/res/layout/activity_tutors.xml" value="0.3098958333333333" />
         <entry key="app/src/main/res/layout/class_x_syllabus_list.xml" value="0.3098958333333333" />
+        <entry key="app/src/main/res/layout/custom_toolbar.xml" value="0.16770833333333332" />
         <entry key="app/src/main/res/layout/model_set_class_x_syllabus_list.xml" value="0.3098958333333333" />
         <entry key="app/src/main/res/layout/nav_header.xml" value="0.3098958333333333" />
         <entry key="app/src/main/res/layout/video_row.xml" value="0.3098958333333333" />

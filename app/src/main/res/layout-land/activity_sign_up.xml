@@ -147,8 +147,8 @@
 
         <Button
             android:id="@+id/register"
-            android:layout_width="@dimen/signup_registerbutton_width"
-            android:layout_height="@dimen/signup_registerbutton_height"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:background="@drawable/register_button_background"
             android:text="@string/register_button"
             android:textAllCaps="false"

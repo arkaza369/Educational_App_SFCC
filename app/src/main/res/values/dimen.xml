@@ -32,7 +32,7 @@
     <dimen name="signup_city_text_size">22sp</dimen>
     <dimen name="signup_password_text_size">22sp</dimen>
     <dimen name="signup_confirmpassword_text_size">22sp</dimen>
-    <dimen name="signup_registerbutton_text_size">22sp</dimen>
+    <dimen name="signup_registerbutton_text_size">20sp</dimen>
     <dimen name="signup_alreadysignedin_text_size">15sp</dimen>
     <dimen name="login_title_text_size">20sp</dimen>
     <dimen name="login_email_text_size">22sp</dimen>
